@@ -1,0 +1,17 @@
+AllCops:
+  Exclude:
+    - 'test/fib.rb'
+
+Style/InfiniteLoop:
+  Enabled: false
+
+Style/StringLiterals:
+  Enabled: false
+  EnforcedStyle: double_quotes
+
+Style/StringLiteralsInInterpolation:
+  Enabled: true
+  EnforcedStyle: double_quotes
+
+Layout/LineLength:
+  Max: 120
