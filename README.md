@@ -18,6 +18,10 @@ Or install it yourself as:
 
     $ gem install pairing_heap
 
+
+## Documentation
+https://rubydoc.info/gems/pairing_heap
+
 ## Usage
 ```ruby
 require 'pairing_heap'
