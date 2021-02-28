@@ -143,8 +143,6 @@ module PairingHeap
       elsif node.parent.subheaps.equal?(node)
         node.parent.subheaps = node.next_sibling
         node.next_sibling.prev_sibling = nil if node.next_sibling
-      elsif node.next_sibling
-        node.next_sibling.prev_sibling = nil
       end
       node.prev_sibling = nil
       node.next_sibling = nil
