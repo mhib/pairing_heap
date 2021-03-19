@@ -155,7 +155,7 @@ Original performance test from [lazy_priority_queue](https://github.com/matiasba
 </table>
 
 ### Stress test with changing priority(N = 1000) [source code](./test/performance_with_change_priority.rb)
-A stress test of 2,000,000 operations: starting with 1,000 pushes/1000 change_priorities/0 pops, following 999 pushes/999 change_priorities/1 pop, and so on till 0 pushes/0 change_priorities/1000 pops.
+A stress test of 1,501,500 operations: starting with 1,000 pushes/1000 change_priorities/0 pops, following 999 pushes/999 change_priorities/1 pop, and so on till 0 pushes/0 change_priorities/1000 pops.
 <table>
   <tr>
     <th colspan="4">ruby 3.0.0p0 (2020-12-25 revision 95aff21468) [x86_64-darwin20]</th>
@@ -214,7 +214,7 @@ A stress test of 2,000,000 operations: starting with 1,000 pushes/1000 change_pr
 </table>
 
 ### Stress test with changing priority(N = 10) [source code](./test/performance_with_change_priority.rb)
-A stress test of 200 operations: starting with 10 pushes/10 change_priorities/0 pops, following 9 pushes/9 change_priorities/1 pop, and so on till 0 pushes/0 change_priorities/10 pops.
+A stress test of 165 operations: starting with 10 pushes/10 change_priorities/0 pops, following 9 pushes/9 change_priorities/1 pop, and so on till 0 pushes/0 change_priorities/10 pops.
 <table>
   <tr>
     <th colspan="4">ruby 3.0.0p0 (2020-12-25 revision 95aff21468) [x86_64-darwin20]</th>
