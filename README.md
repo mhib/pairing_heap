@@ -76,7 +76,7 @@ This API is a drop-in replacement of [lazy_priority_queue](https://github.com/ma
 * `change_priority` returns `self` instead of the first argument
 * `enqueue` returns `self` instead of the first argument
 * Queue classes are in the `PairingHeap` namespace, so `require 'pairing_heap` does not load `MinPriorityQueue` to the global scope
-* `top_condidition` constructor argument is removed
+* `top_condition` constructor argument is removed
 
 ## Time Complexity
 | Operation       | Time complexity | Amortized time complexity |
