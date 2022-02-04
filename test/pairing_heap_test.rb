@@ -3,15 +3,15 @@
 require "test_helper"
 
 describe PairingHeap do
+  class Element
+    attr_accessor :priority
+    def initialize(priority)
+      @priority = priority
+    end
+  end
   describe PairingHeap::PairingHeap do
     it 'works correctly with random usage' do
       queue = PairingHeap::PairingHeap.new
-      class Element
-        attr_accessor :priority
-        def initialize(priority)
-          @priority = priority
-        end
-      end
 
       items = []
 
@@ -68,6 +68,49 @@ describe PairingHeap do
       _(-> { queue.change_priority(1, 2) }).must_raise(ArgumentError)
     end
   end
+
+  describe PairingHeap::SimplePairingHeap do
+    it 'works correctly with random usage' do
+      queue = PairingHeap::SimplePairingHeap.new
+
+      items = []
+
+      5_000.times do |id|
+        _(queue.empty?).must_equal(items.empty?)
+        _(-> { queue.peek }).must_be_silent
+        _(queue.size).must_equal(items.size)
+
+        if rand(2).zero?
+          priority = rand(1000)
+          item = Element.new(priority)
+          queue.enqueue(item, item.priority)
+          items << item
+        end
+
+        next if items.empty?
+
+        if rand(4).zero?
+          items.delete(queue.dequeue)
+        end
+
+      end
+
+      sorted_items = []
+      sorted_items << queue.pop until queue.empty?
+      sorted_items.map!(&:priority)
+
+      _(sorted_items).must_equal(sorted_items.sort)
+    end
+
+    it 'does not crash with a large number of consecutive pushes' do
+      queue = PairingHeap::SimplePairingHeap.new
+      1.upto(5_000_000) do |i|
+        queue.push(i, i)
+      end
+      _(queue.pop).must_equal(1)
+    end
+  end
+
 
   describe PairingHeap::MinPriorityQueue do
     it 'sorts correctly' do

@@ -4,6 +4,7 @@ require 'benchmark/ips'
 require_relative '../lib/pairing_heap'
 require 'lazy_priority_queue'
 require_relative 'fib'
+require 'rb_heap'
 
 N = 1_000
 def iterator(push, pop)
@@ -32,9 +33,19 @@ Benchmark.ips do |bm|
     iterator(->(n) { q.enqueue n, rand }, -> { q.dequeue })
   end
 
+  bm.report('simple_pairing_heap') do
+    q = PairingHeap::SimplePairingHeap.new
+    iterator(->(n) { q.enqueue n, rand }, -> { q.dequeue })
+  end
+
   bm.report('Fibonacci') do
     q = RubyPriorityQueue.new
     iterator(->(n) { q.push n, rand }, -> { q.delete_min })
+  end
+
+  bm.report('rb_heap') do
+    q = Heap.new(:<)
+    iterator(->(n) { q.add(rand.to_s) }, -> { q.pop })
   end
 
   bm.compare!

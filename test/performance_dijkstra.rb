@@ -5,6 +5,7 @@ require 'benchmark/ips'
 require_relative '../lib/pairing_heap'
 require 'lazy_priority_queue'
 require_relative 'fib'
+require 'rb_heap'
 Edge = Struct.new(:to, :weight)
 
 @neighbourhood = []
@@ -40,11 +41,69 @@ def get_costs(q)
   distance
 end
 
+class Entry
+  attr_reader :vertex, :weight
+  def initialize(vertex, weight)
+    @vertex = vertex
+    @weight = weight
+  end
+end
+
+def get_cost_rb_heap(q)
+  distance = Array.new(@neighbourhood.size, Float::INFINITY)
+  distance[1] = 0
+  @neighbourhood.each_with_index do |value, vertex|
+    next unless value
+
+    q.add(Entry.new(vertex, distance[vertex]))
+  end
+  until q.empty?
+    entry = q.pop
+    if entry.weight != distance[entry.vertex]
+      next
+    end
+    el = entry.vertex
+    @neighbourhood[el].each do |edge|
+      alt = distance[el] + edge.weight
+      if alt < distance[edge.to]
+        distance[edge.to] = alt
+        q.add(Entry.new(edge.to, alt))
+      end
+    end
+  end
+  distance
+end
+
+def get_cost_simple_pairing_heap(q)
+  distance = Array.new(@neighbourhood.size, Float::INFINITY)
+  distance[1] = 0
+  @neighbourhood.each_with_index do |value, vertex|
+    next unless value
+
+    q.push(vertex, distance[vertex])
+  end
+  until q.empty?
+    el, weight = q.pop_priority
+    if weight != distance[el]
+      next
+    end
+    @neighbourhood[el].each do |edge|
+      alt = distance[el] + edge.weight
+      if alt < distance[edge.to]
+        distance[edge.to] = alt
+        q.push(edge.to, alt)
+      end
+    end
+  end
+  distance
+end
+
 Benchmark.ips do |bm|
   bm.time = 60
   bm.warmup = 15
-  bm.report('pairing_heap') do
-    get_costs(PairingHeap::MinPriorityQueue.new)
+
+  bm.report('SimplePairingHeap') do
+    get_cost_simple_pairing_heap(PairingHeap::SimplePairingHeap.new)
   end
 
   bm.report('Fibonacci') do
@@ -53,6 +112,14 @@ Benchmark.ips do |bm|
 
   bm.report('lazy_priority_queue') do
     get_costs(MinPriorityQueue.new)
+  end
+
+  bm.report('rb_heap') do
+    get_cost_rb_heap(Heap.new { |a, b| a.weight < b.weight })
+  end
+
+  bm.report('PairingHeap') do
+    get_costs(PairingHeap::MinPriorityQueue.new)
   end
 
   bm.compare!
