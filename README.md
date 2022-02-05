@@ -835,11 +835,11 @@ Heaps that support change_priority operation use it. Heaps that do not support i
   </tr>
   <tr>
     <td>pairing_heap (PairingHeap)</td>
-    <td>1.209</td>
+    <td>1.209x slower</td>
   </tr>
   <tr>
     <td>rb_heap</td>
-    <td>1.954</td>
+    <td>1.954x slower</td>
   </tr>
   <tr>
     <td>lazy_priority_queue</td>
@@ -889,7 +889,7 @@ Heaps that support change_priority operation use it. Heaps that do not support i
   </tr>
   <tr>
     <td>pairing_heap (PairingHeap)</td>
-    <td>1.296</td>
+    <td>1.296x slower</td>
   </tr>
   <tr>
     <td>lazy_priority_queue</td>
@@ -897,7 +897,7 @@ Heaps that support change_priority operation use it. Heaps that do not support i
   </tr>
   <tr>
     <td>rb_heap</td>
-    <td>1.710</td>
+    <td>1.710x slower</td>
   </tr>
   <tr>
     <td>Fibonacci</td>
@@ -931,6 +931,7 @@ Heaps that support change_priority operation use it. Heaps that do not support i
     <td>2.044x slower</td>
   </tr>
 </table>
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
