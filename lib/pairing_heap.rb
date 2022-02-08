@@ -218,12 +218,11 @@ module PairingHeap
 
   class SimplePairingHeap
     class Node
-      attr_accessor :elem, :priority, :subheaps, :parent, :next_sibling
-      def initialize(elem, priority, subheaps, parent, next_sibling)
+      attr_accessor :elem, :priority, :subheaps, :next_sibling
+      def initialize(elem, priority, subheaps, next_sibling)
         @elem = elem
         @priority = priority
         @subheaps = subheaps
-        @parent = parent
         @next_sibling = next_sibling
       end
     end
@@ -243,7 +242,7 @@ module PairingHeap
     # @raise [ArgumentError] if the element is already in the heap
     # @return [PairingHeap]
     def push(elem, priority)
-      node = Node.new(elem, priority, nil, nil, nil)
+      node = Node.new(elem, priority, nil, nil)
       @root = meld(@root, node)
       @size += 1
       self
@@ -291,7 +290,6 @@ module PairingHeap
       elem = @root.elem
       @root = merge_pairs(@root.subheaps)
       if @root
-        @root.parent = nil
         @root.next_sibling = nil
       end
       elem
@@ -320,7 +318,6 @@ module PairingHeap
       end
       child.next_sibling = parent.subheaps
       parent.subheaps = child
-      child.parent = parent
       parent
     end
   end
