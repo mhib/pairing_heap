@@ -6,6 +6,7 @@ require_relative '../lib/pairing_heap'
 require 'csv'
 require 'benchmark/ips'
 require_relative 'fib'
+require 'lazy_priority_queue'
 
 include RGL
 
@@ -18,11 +19,11 @@ CSV.foreach("Tokyo_Edgelist.csv", headers: true) do |row|
   @edge_weights[[row["START_NODE"].to_i, row["END_NODE"].to_i]] = row["LENGTH"].to_f
 end
 
-class PairingDijkstraAlgorithm < RGL::DijkstraAlgorithm
+class LazyDijkstraAlgorithm < RGL::DijkstraAlgorithm
   def init(source)
     @visitor.set_source(source)
 
-    @queue = PairingHeap::MinPriorityQueue.new
+    @queue = MinPriorityQueue.new
     @queue.push(source, 0)
   end
 end
@@ -44,12 +45,12 @@ Benchmark.ips do |bm|
     FibDijkstraAlgorithm.new(@graph, @edge_weights, DijkstraVisitor.new(@graph)).shortest_paths(1)
   end
 
-  bm.report('lazy_priority_queue') do
+  bm.report('pairing_heap') do
     DijkstraAlgorithm.new(@graph, @edge_weights, DijkstraVisitor.new(@graph)).shortest_paths(1)
   end
 
-  bm.report('pairing_heap') do
-    PairingDijkstraAlgorithm.new(@graph, @edge_weights, DijkstraVisitor.new(@graph)).shortest_paths(1)
+  bm.report('lazy_priority_queue') do
+    LazyDijkstraAlgorithm.new(@graph, @edge_weights, DijkstraVisitor.new(@graph)).shortest_paths(1)
   end
 
   bm.compare!

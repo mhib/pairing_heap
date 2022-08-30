@@ -2,7 +2,9 @@
 
 PairingHeap is a pure Ruby priority queue implementation using a pairing heap as the underlying data structure. While a pairing heap is asymptotically less efficient than the Fibonacci heap, it is usually faster in practice. This makes it a popular choice for Prim's MST or Dijkstra's algorithm implementations.
 
-Also implementation without priority change support is provided(`SimplePairingHeap`), while the asymptotical complexity of the methods stay the same, bookkeeping of elements is not needed making the constant smaller.
+PairingHeap is currently being used as the priority queue data structure in [RGL](https://github.com/monora/rgl/).
+
+Also implementation without priority change support is provided(`SimplePairingHeap`), while the asymptotical complexity of the methods stay the same, bookkeeping of elements is not needed making, the constant smaller.
 
 ## Installation
 
@@ -104,7 +106,7 @@ This API is a drop-in replacement of [lazy_priority_queue](https://github.com/ma
 ## Benchmarks
 I picked the three fastest pure Ruby priority queue implementations I was aware of for the comparison:
 
-* [lazy_priority_queue](https://github.com/matiasbattocchia/lazy_priority_queue) that uses a lazy binomial heap. This is probably the most popular option, used for example in [RGL](https://github.com/monora/rgl/)
+* [lazy_priority_queue](https://github.com/matiasbattocchia/lazy_priority_queue) that uses a lazy binomial heap. This is probably the most popular option. It was used in [RGL](https://github.com/monora/rgl/) until PairingHeap replaced it.
 * Pure Ruby implementation of Fibonacci Heap from [priority-queue](https://github.com/supertinou/priority-queue) ([link to source](https://github.com/supertinou/priority-queue/blob/master/lib/priority_queue/ruby_priority_queue.rb))
 * [rb_heap](https://github.com/florian/rb_heap) that uses a binary heap. Note however that this implementation does not support change_priority operation.
 
