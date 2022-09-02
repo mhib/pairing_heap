@@ -96,6 +96,7 @@ module PairingHeap
       self
     end
     alias enqueue push
+    alias offer push
 
     # Returns the element at the top of the heap
     #   Time Complexity: O(1)
@@ -104,6 +105,10 @@ module PairingHeap
     end
 
     def peek_priority
+      @root&.priority
+    end
+
+    def peek_with_priority
       [@root&.elem, @root&.priority]
     end
 
@@ -269,6 +274,7 @@ module PairingHeap
       self
     end
     alias enqueue push
+    alias offer push
 
     # Returns the element at the top of the heap
     #   Time Complexity: O(1)
@@ -277,6 +283,10 @@ module PairingHeap
     end
 
     def peek_priority
+      @root&.priority
+    end
+
+    def peek_with_priority
       [@root&.elem, @root&.priority]
     end
 
@@ -299,25 +309,29 @@ module PairingHeap
     end
     alias length size
 
-    # Removes element from the top of the heap
+    # Removes element from the top of the heap and returns it
     #   Time Complexity: O(N)
     #   Amortized time Complexity: O(log(N))
     # @raise [ArgumEntError] if the heap is empty
-    # @return [PairingHeap]
     def pop
       raise ArgumentError, "Cannot remove from an empty heap" if @root.nil?
       @size -= 1
 
       elem = @root.elem
       @root = merge_pairs(@root.subheaps)
-      if @root
-        @root.next_sibling = nil
-      end
+      @root&.next_sibling = nil
+
       elem
     end
     alias dequeue pop
 
     def pop_priority
+      node = @root
+      pop
+      node.priority
+    end
+
+    def pop_with_priority
       node = @root
       pop
       [node.elem, node.priority]

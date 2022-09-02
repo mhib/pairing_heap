@@ -83,7 +83,7 @@ def get_cost_simple_pairing_heap(q)
     q.push(vertex, distance[vertex])
   end
   until q.empty?
-    el, weight = q.pop_priority
+    el, weight = q.pop_with_priority
     if weight != distance[el]
       next
     end
