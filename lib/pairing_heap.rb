@@ -126,11 +126,10 @@ module PairingHeap
     end
     alias length size
 
-    # Removes element from the top of the heap
+    # Removes element from the top of the heap and returns it
     #   Time Complexity: O(N)
     #   Amortized time Complexity: O(log(N))
-    # @raise [ArgumEntError] if the heap is empty
-    # @return [PairingHeap]
+    # @raise [ArgumentError] if the heap is empty
     def pop
       raise ArgumentError, "Cannot remove from an empty heap" if @root.nil?
 
@@ -188,16 +187,21 @@ module PairingHeap
       @nodes.delete(elem)
       if node.parent.nil?
         @root = merge_pairs(node.subheaps)
+        if @root
+          @root.parent = nil
+          @root.prev_sibling = nil
+          @root.next_sibling = nil
+        end
       else
         node.remove_from_parents_list!
         new_heap = merge_pairs(node.subheaps)
         if new_heap
-          new_heap.prev_sibling = nil
-          new_heap.next_sibling = nil
           @root = meld(new_heap, @root)
+          @root.parent = nil
+          @root.prev_sibling = nil
+          @root.next_sibling = nil
         end
       end
-      @root&.parent = nil
       self
     end
 
