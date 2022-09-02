@@ -8,18 +8,21 @@ module PairingHeap
       return heaps if heaps.next_sibling.nil?
 
       # [H1, H2, H3, H4, H5, H6, H7] => [H1H2, H3H4, H5H6, H7]
-      stack = []
-      current = heaps
-      while current
-        prev = current
-        current = current.next_sibling
-        unless current
-          stack << prev
+      pairs = nil
+      left = heaps
+      while left
+        right = left.next_sibling
+        unless right
+          left.next_sibling = pairs
+          pairs = left
           break
         end
-        next_val = current.next_sibling
-        stack << meld(prev, current)
-        current = next_val
+        next_val = right.next_sibling
+        right = meld(left, right)
+        right.next_sibling = pairs
+        pairs = right
+
+        left = next_val
       end
 
       # [H1H2, H3H4, H5H6, H7]
@@ -27,13 +30,14 @@ module PairingHeap
       # [H1H2, H3H45H67]
       # [H1H2H3H45H67]
       # return H1H2H3H45H67
-      while true
-        right = stack.pop
-        return right if stack.empty?
-
-        left = stack.pop
-        stack << meld(left, right)
+      left = pairs
+      right = pairs.next_sibling
+      while right
+        next_val = right.next_sibling
+        left = meld(left, right)
+        right = next_val
       end
+      left
     end
   end
   private_constant :MergePairs
