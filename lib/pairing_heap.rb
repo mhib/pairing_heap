@@ -43,13 +43,13 @@ module PairingHeap
   class PairingHeap
     class Node
       attr_accessor :elem, :priority, :subheaps, :parent, :prev_sibling, :next_sibling
-      def initialize(elem, priority, subheaps, parent, prev_sibling, next_sibling)
+      def initialize(elem, priority)
         @elem = elem
         @priority = priority
-        @subheaps = subheaps
-        @parent = parent
-        @prev_sibling = prev_sibling
-        @next_sibling = next_sibling
+        @subheaps = nil
+        @parent = nil
+        @prev_sibling = nil
+        @next_sibling = nil
       end
 
       def remove_from_parents_list!
@@ -82,9 +82,13 @@ module PairingHeap
     def push(elem, priority)
       raise ArgumentError, "Element already in the heap" if @nodes.key?(elem)
 
-      node = Node.new(elem, priority, nil, nil, nil, nil)
+      node = Node.new(elem, priority)
       @nodes[elem] = node
-      @root = meld(@root, node)
+      if @root
+        @root = meld(@root, node)
+      else
+        @root = node
+      end
       self
     end
     alias enqueue push
@@ -186,20 +190,26 @@ module PairingHeap
         if new_heap
           new_heap.prev_sibling = nil
           new_heap.next_sibling = nil
+          @root = meld(new_heap, @root)
         end
-        @root = meld(new_heap, @root)
       end
       @root&.parent = nil
       self
+    end
+
+    # Returns priority of the provided element
+    #   Time Complexity: O(1)
+    # @raise [ArgumentError] if the element is not in the heap
+    def get_priority(elem)
+      node = @nodes[elem]
+      raise ArgumentError, "Provided element is not in heap" if node.nil?
+      node.priority
     end
 
     private
     include MergePairs
 
     def meld(left, right)
-      return right if left.nil?
-      return left if right.nil?
-
       if @order[left.priority, right.priority]
         parent = left
         child = right
@@ -219,11 +229,11 @@ module PairingHeap
   class SimplePairingHeap
     class Node
       attr_accessor :elem, :priority, :subheaps, :next_sibling
-      def initialize(elem, priority, subheaps, next_sibling)
+      def initialize(elem, priority)
         @elem = elem
         @priority = priority
-        @subheaps = subheaps
-        @next_sibling = next_sibling
+        @subheaps = nil
+        @next_sibling = nil
       end
     end
     private_constant :Node
@@ -241,8 +251,12 @@ module PairingHeap
     # @param priority Priority of the element
     # @return [PairingHeap]
     def push(elem, priority)
-      node = Node.new(elem, priority, nil, nil)
-      @root = meld(@root, node)
+      node = Node.new(elem, priority)
+      if @root
+        @root = meld(@root, node)
+      else
+        @root = node
+      end
       @size += 1
       self
     end
@@ -305,9 +319,6 @@ module PairingHeap
     include MergePairs
 
     def meld(left, right)
-      return right if left.nil?
-      return left if right.nil?
-
       if @order[left.priority, right.priority]
         parent = left
         child = right
