@@ -30,22 +30,22 @@ Benchmark.ips do |bm|
 
   bm.report('pairing_heap') do
     q = PairingHeap::MinPriorityQueue.new
-    iterator(->(n) { q.enqueue n, rand }, -> { q.dequeue })
+    iterator(->(n) { q.enqueue(n, rand) }, -> { q.dequeue })
   end
 
   bm.report('simple_pairing_heap') do
     q = PairingHeap::SimplePairingHeap.new
-    iterator(->(n) { q.enqueue n, rand }, -> { q.dequeue })
+    iterator(->(n) { q.enqueue(n, rand) }, -> { q.dequeue })
   end
 
   bm.report('Fibonacci') do
     q = RubyPriorityQueue.new
-    iterator(->(n) { q.push n, rand }, -> { q.delete_min })
+    iterator(->(n) { q.push(n, rand) }, -> { q.delete_min })
   end
 
   bm.report('rb_heap') do
     q = Heap.new(:<)
-    iterator(->(n) { q.add(rand.to_s) }, -> { q.pop })
+    iterator(->(n) { q.add(rand) }, -> { q.pop })
   end
 
   bm.compare!

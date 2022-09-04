@@ -5,7 +5,7 @@ require_relative '../lib/pairing_heap'
 require 'lazy_priority_queue'
 require_relative 'fib'
 
-N = 10
+N = 1_000
 def iterator(push, pop, change_priority)
   N.times do |i|
     (N - i).times do |j|

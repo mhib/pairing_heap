@@ -19,6 +19,15 @@ CSV.foreach("Tokyo_Edgelist.csv", headers: true) do |row|
   @edge_weights[[row["START_NODE"].to_i, row["END_NODE"].to_i]] = row["LENGTH"].to_f
 end
 
+class PairingDijkstraAlgorithm < RGL::DijkstraAlgorithm
+  def init(source)
+    @visitor.set_source(source)
+
+    @queue = PairingHeap::MinPriorityQueue.new
+    @queue.push(source, 0)
+  end
+end
+
 class LazyDijkstraAlgorithm < RGL::DijkstraAlgorithm
   def init(source)
     @visitor.set_source(source)
@@ -46,7 +55,7 @@ Benchmark.ips do |bm|
   end
 
   bm.report('pairing_heap') do
-    DijkstraAlgorithm.new(@graph, @edge_weights, DijkstraVisitor.new(@graph)).shortest_paths(1)
+    PairingDijkstraAlgorithm.new(@graph, @edge_weights, DijkstraVisitor.new(@graph)).shortest_paths(1)
   end
 
   bm.report('lazy_priority_queue') do

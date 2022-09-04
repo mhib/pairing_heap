@@ -116,7 +116,7 @@ Original performance test from [lazy_priority_queue](https://github.com/matiasba
 > A stress test of 1,000,000 operations: starting with 1,000 pushes/0 pops, following 999 pushes/1 pop, and so on till 0 pushes/1000 pops.
 <table>
   <tr>
-    <th colspan="4">ruby 3.1.0p0 (2021-12-25 revision fb4df44d16) [x86_64-darwin21]</th>
+    <th colspan="4">ruby 3.1.2p20 (2022-04-12 revision 4491bb740a) [x86_64-darwin21]</th>
   </tr>
   <tr>
     <th>Library</th>
@@ -126,464 +126,36 @@ Original performance test from [lazy_priority_queue](https://github.com/matiasba
   </tr>
   <tr>
     <td>pairing_heap (SimplePairingHeap)</td>
-    <td>18</td>
-    <td>60.232046</td>
-    <td>0.299</td>
-  </tr>
-  <tr>
-    <td>pairing_heap (PairingHeap)</td>
-    <td>15</td>
-    <td>63.978031</td>
-    <td>0.234(1.27x slower)</td>
-  </tr>
-  <tr>
-    <td>lazy_priority_queue</td>
-    <td>9</td>
-    <td>60.031283</td>
-    <td>0.150(1.99x slower)</td>
-  </tr>
-  <tr>
-    <td>rb_heap</td>
-    <td>9</td>
-    <td>60.497355</td>
-    <td>0.149(2.01x slower)</td>
-  </tr>
-  <tr>
-    <td>Fibonacci</td>
-    <td>8</td>
-    <td>66.866055</td>
-    <td>0.120(2.50x slower)</td>
-  </tr>
-  <tr>
-    <th colspan="4">ruby 3.1.0p0 (2021-12-25 revision fb4df44d16) +YJIT [x86_64-darwin21]</th>
-  </tr>
-  <tr>
-    <th>Library</th>
-    <th>Iterations</th>
-    <th>Seconds</th>
-    <th>Iterations per second</th>
-  </tr>
-  <tr>
-    <td>pairing_heap (SimplePairingHeap)</td>
-    <td>22</td>
-    <td>62.866807</td>
-    <td>0.350</td>
+    <td>23</td>
+    <td>62.014773</td>
+    <td>0.371</td>
   </tr>
   <tr>
     <td>pairing_heap (PairingHeap)</td>
     <td>16</td>
-    <td>61.358679</td>
-    <td>0.261(1.34x slower)</td>
-  </tr>
-  <tr>
-    <td>Fibonacci</td>
-    <td>14</td>
-    <td>64.394112</td>
-    <td>0.217(1.61x slower)</td>
+    <td>63.135240</td>
+    <td>0.253(1.46x slower)</td>
   </tr>
   <tr>
     <td>rb_heap</td>
-    <td>12</td>
-    <td>60.975479</td>
-    <td>0.197(1.78x slower)</td>
-  </tr>
-  <tr>
-    <td>lazy_priority_queue</td>
-    <td>11</td>
-    <td>65.568648</td>
-    <td>0.168(2.09x slower)</td>
-  </tr>
-  <tr>
-    <th colspan="4">jruby 9.3.3.0 (2.6.8) 2022-01-19 b26de1f5c5 OpenJDK 64-Bit Server VM 16.0.1+9-24 on 16.0.1+9-24 +jit [darwin-x86_64]</th>
-  </tr>
-  <tr>
-    <th>Library</th>
-    <th>Iterations</th>
-    <th>Seconds</th>
-    <th>Iterations per second</th>
-  </tr>
-  <tr>
-    <td>pairing_heap (SimplePairingHeap)</td>
-    <td>21</td>
-    <td>60.357577s</td>
-    <td>0.348</td>
-  </tr>
-  <tr>
-    <td>pairing_heap (PairingHeap)</td>
-    <td>15</td>
-    <td>60.417252</td>
-    <td>0.248(1.40x slower)</td>
-  </tr>
-  <tr>
-    <td>lazy_priority_queue</td>
     <td>14</td>
-    <td>61.022450</td>
-    <td>0.229(1.52x slower)</td>
-  </tr>
-  <tr>
-    <td>rb_heap</td>
-    <td>13</td>
-    <td>63.661862</td>
-    <td>0.204(1.70x slower)</td>
-  </tr>
-  <tr>
-    <td>Fibonacci</td>
-    <td>8</td>
-    <td>62.643449</td>
-    <td>0.128(2.72x slower)</td>
-  </tr>
-  <tr>
-    <th colspan="4">jruby 9.3.3.0 (2.6.8) 2022-01-19 b26de1f5c5 OpenJDK 64-Bit Server VM 16.0.1+9-24 on 16.0.1+9-24 +indy +jit [darwin-x86_64]</th>
-  </tr>
-  <tr>
-    <th>Library</th>
-    <th>Iterations</th>
-    <th>Seconds</th>
-    <th>Iterations per second</th>
-  </tr>
-  <tr>
-    <td>pairing_heap (SimplePairingHeap)</td>
-    <td>43</td>
-    <td>60.472129</td>
-    <td>0.711</td>
-  </tr>
-  <tr>
-    <td>pairing_heap (PairingHeap)</td>
-    <td>30</td>
-    <td>60.359748</td>
-    <td>0.497(1.43x slower)</td>
-  </tr>
-  <tr>
-    <td>Fibonacci</td>
-    <td>25</td>
-    <td>62.084250</td>
-    <td>0.403(1.77x slower)</td>
-  </tr>
-  <tr>
-    <td>rb_heap</td>
-    <td>23</td>
-    <td>62.419893</td>
-    <td>0.369(1.93x slower)</td>
-  </tr>
-  <tr>
-    <td>lazy_priority_queue</td>
-    <td>22</td>
-    <td>60.947299</td>
-    <td>0.361(1.97x slower)</td>
-  </tr>
-</table>
-
-### Stress test with changing priority(N = 1000) [source code](./test/performance_with_change_priority.rb)
-A stress test of 1,501,500 operations: starting with 1,000 pushes/1000 change_priorities/0 pops, following 999 pushes/999 change_priorities/1 pop, and so on till 0 pushes/0 change_priorities/1000 pops.
-<table>
-  <tr>
-    <th colspan="4">ruby 3.1.0p0 (2021-12-25 revision fb4df44d16) [x86_64-darwin21]</th>
-  </tr>
-  <tr>
-    <th>Library</th>
-    <th>Iterations</th>
-    <th>Seconds</th>
-    <th>Iterations per second</th>
-  </tr>
-  <tr>
-    <td>pairing_heap</td>
-    <td>14</td>
-    <td>63.536300</td>
-    <td>0.220</td>
-  </tr>
-  <tr>
-    <td>lazy_priority_queue</td>
-    <td>9</td>
-    <td>63.319474s</td>
-    <td>0.142(1.55x slower)</td>
-  </tr>
-  <tr>
-    <td>Fibonacci</td>
-    <td>8</td>
-    <td>67.385714</td>
-    <td>0.119(1.86x slower)</td>
-  </tr>
-  <tr>
-    <th colspan="4">ruby 3.1.0p0 (2021-12-25 revision fb4df44d16) +YJIT [x86_64-darwin21]</th>
-  </tr>
-  <tr>
-    <th>Library</th>
-    <th>Iterations</th>
-    <th>Seconds</th>
-    <th>Iterations per second</th>
-  </tr>
-  <tr>
-    <td>pairing_heap</td>
-    <td>15</td>
-    <td>62.243080</td>
-    <td>0.241</td>
-  </tr>
-  <tr>
-    <td>Fibonacci</td>
-    <td>13</td>
-    <td>63.030390</td>
-    <td>0.206(1.17x slower)</td>
+    <td>61.123304</td>
+    <td>0.229(1.62x slower)</td>
   </tr>
   <tr>
     <td>lazy_priority_queue</td>
     <td>10</td>
-    <td>64.865853</td>
-    <td>0.154(1.56x slower)</td>
-  </tr>
-  <tr>
-    <th colspan="4">jruby 9.3.3.0 (2.6.8) 2022-01-19 b26de1f5c5 OpenJDK 64-Bit Server VM 16.0.1+9-24 on 16.0.1+9-24 +jit [darwin-x86_64]</th>
-  </tr>
-  <tr>
-    <th>Library</th>
-    <th>Iterations</th>
-    <th>Seconds</th>
-    <th>Iterations per second</th>
-  </tr>
-  <tr>
-    <td>pairing_heap</td>
-    <td>15</td>
-    <td>61.540851</td>
-    <td>0.244</td>
-  </tr>
-  <tr>
-    <td>lazy_priority_queue</td>
-    <td>14</td>
-    <td>61.471507</td>
-    <td>0.228(1.07x slower)</td>
+    <td>66.208647</td>
+    <td>0.151(2.46x slower)</td>
   </tr>
   <tr>
     <td>Fibonacci</td>
-    <td>9</td>
-    <td>67.393730</td>
-    <td>0.134(1.83x slower)</td>
-  </tr>
-  <tr>
-    <th colspan="4">jruby 9.3.3.0 (2.6.8) 2022-01-19 b26de1f5c5 OpenJDK 64-Bit Server VM 16.0.1+9-24 on 16.0.1+9-24 +indy +jit [darwin-x86_64]</th>
-  </tr>
-  <tr>
-    <th>Library</th>
-    <th>Iterations</th>
-    <th>Seconds</th>
-    <th>Iterations per second</th>
-  </tr>
-  <tr>
-    <td>pairing_heap</td>
-    <td>27</td>
-    <td>61.322001</td>
-    <td>0.440</td>
-  </tr>
-  <tr>
-    <td>Fibonacci</td>
-    <td>21</td>
-    <td>60.334636</td>
-    <td>0.349(1.26x slower)</td>
-  </tr>
-  <tr>
-    <td>lazy_priority_queue</td>
-    <td>20</td>
-    <td>61.471507</td>
-    <td>0.327(1.35x slower)</td>
-  </tr>
-</table>
-
-### Stress test with changing priority(N = 10) [source code](./test/performance_with_change_priority.rb)
-A stress test of 165 operations: starting with 10 pushes/10 change_priorities/0 pops, following 9 pushes/9 change_priorities/1 pop, and so on till 0 pushes/0 change_priorities/10 pops.
-<table>
-  <tr>
-    <th colspan="4">ruby 3.1.0p0 (2021-12-25 revision fb4df44d16) [x86_64-darwin21]</th>
-  </tr>
-  <tr>
-    <th>Library</th>
-    <th>Iterations per second</th>
-  </tr>
-  <tr>
-    <td>pairing_heap</td>
-    <td>5914.3</td>
-  </tr>
-  <tr>
-    <td>lazy_priority_queue</td>
-    <td>4293.5(1.38x slower)</td>
-  </tr>
-  <tr>
-    <td>Fibonacci</td>
-    <td>3755.2(1.57x slower)</td>
-  </tr>
-  <tr>
-    <th colspan="4">ruby 3.1.0p0 (2021-12-25 revision fb4df44d16) +YJIT [x86_64-darwin21]</th>
-  </tr>
-  <tr>
-    <th>Library</th>
-    <th>Iterations per second</th>
-  </tr>
-  <tr>
-    <td>pairing_heap</td>
-    <td>7082.7</td>
-  </tr>
-  <tr>
-    <td>Fibonacci</td>
-    <td>6687.1(1.06x slower)</td>
-  </tr>
-  <tr>
-    <td>lazy_priority_queue</td>
-    <td>5006.4(1.41x slower)</td>
-  </tr>
-  <tr>
-    <th colspan="4">jruby 9.3.3.0 (2.6.8) 2022-01-19 b26de1f5c5 OpenJDK 64-Bit Server VM 16.0.1+9-24 on 16.0.1+9-24 +jit [darwin-x86_64]</th>
-  </tr>
-  <tr>
-    <th>Library</th>
-    <th>Iterations per second</th>
-  </tr>
-  <tr>
-    <td>pairing_heap</td>
-    <td>6861.6</td>
-  </tr>
-  <tr>
-    <td>lazy_priority_queue</td>
-    <td>6446.4(1.06x slower)</td>
-  </tr>
-  <tr>
-    <td>Fibonacci</td>
-    <td>4365.4(1.57x slower)</td>
-  </tr>
-  <tr>
-    <th colspan="4">jruby 9.3.3.0 (2.6.8) 2022-01-19 b26de1f5c5 OpenJDK 64-Bit Server VM 16.0.1+9-24 on 16.0.1+9-24 +indy +jit [darwin-x86_64]</th>
-  </tr>
-  <tr>
-    <th>Library</th>
-    <th>Iterations per second</th>
-  </tr>
-  <tr>
-    <td>pairing_heap</td>
-    <td>14032</td>
-  </tr>
-  <tr>
-    <td>Fibonacci</td>
-    <td>12841(1.09x slower)</td>
-  </tr>
-  <tr>
-    <td>lazy_priority_queue</td>
-    <td>10404(1.35x slower)</td>
-  </tr>
-</table>
-
-### Dijkstra's algorithm with RGL [source code](./test/performance_rgl.rb)
-<table>
-  <tr>
-    <th colspan="4">ruby 3.1.0p0 (2021-12-25 revision fb4df44d16) [x86_64-darwin21]</th>
-  </tr>
-  <tr>
-    <th>Library</th>
-    <th>Iterations</th>
-    <th>Seconds</th>
-    <th>Iterations per second</th>
-  </tr>
-  <tr>
-    <td>pairing_heap</td>
-    <td>9</td>
-    <td>64.505899</td>
-    <td>0.140</td>
-  </tr>
-  <tr>
-    <td>lazy_priority_queue</td>
     <td>8</td>
-    <td>63.970577</td>
-    <td>0.125(1.12x slower)</td>
+    <td>66.353147</td>
+    <td>0.121(3.08x slower)</td>
   </tr>
   <tr>
-    <td>Fibonacci</td>
-    <td>7</td>
-    <td>62.573724</td>
-    <td>0.112(1.25x slower)</td>
-  </tr>
-  <tr>
-    <th colspan="4">ruby 3.1.0p0 (2021-12-25 revision fb4df44d16) +YJIT [x86_64-darwin21]</th>
-  </tr>
-  <tr>
-    <th>Library</th>
-    <th>Iterations</th>
-    <th>Seconds</th>
-    <th>Iterations per second</th>
-  </tr>
-  <tr>
-    <td>pairing_heap</td>
-    <td>9</td>
-    <td>63.567801</td>
-    <td>0.142</td>
-  </tr>
-  <tr>
-    <td>Fibonacci</td>
-    <td>9</td>
-    <td>64.575079</td>
-    <td>0.140(1.02x slower)</td>
-  </tr>
-  <tr>
-    <td>lazy_priority_queue</td>
-    <td>8</td>
-    <td>60.123700</td>
-    <td>0.133(1.06x slower)</td>
-  </tr>
-  <tr>
-    <th colspan="4">jruby 9.3.3.0 (2.6.8) 2022-01-19 b26de1f5c5 OpenJDK 64-Bit Server VM 16.0.1+9-24 on 16.0.1+9-24 +jit [darwin-x86_64]</th>
-  </tr>
-  <tr>
-    <th>Library</th>
-    <th>Iterations</th>
-    <th>Seconds</th>
-    <th>Iterations per second</th>
-  </tr>
-  <tr>
-    <td>pairing_heap</td>
-    <td>14</td>
-    <td>64.124373</td>
-    <td>0.218</td>
-  </tr>
-  <tr>
-    <td>lazy_priority_queue</td>
-    <td>13</td>
-    <td>61.147807</td>
-    <td>0.213(1.03x slower)</td>
-  </tr>
-  <tr>
-    <td>Fibonacci</td>
-    <td>10</td>
-    <td>64.250067</td>
-    <td>0.156(1.40x slower)</td>
-  </tr>
-  <tr>
-    <th colspan="4">jruby 9.3.3.0 (2.6.8) 2022-01-19 b26de1f5c5 OpenJDK 64-Bit Server VM 16.0.1+9-24 on 16.0.1+9-24 +indy +jit [darwin-x86_64]</th>
-  </tr>
-  <tr>
-    <th>Library</th>
-    <th>Iterations</th>
-    <th>Seconds</th>
-    <th>Iterations per second</th>
-  </tr>
-  <tr>
-    <td>pairing_heap</td>
-    <td>22</td>
-    <td>61.450341</td>
-    <td>0.361</td>
-  </tr>
-  <tr>
-    <td>Fibonacci</td>
-    <td>18</td>
-    <td>61.618204</td>
-    <td>0.296(1.22x slower)</td>
-  </tr>
-  <tr>
-    <td>lazy_priority_queue</td>
-    <td>17</td>
-    <td>60.156184</td>
-    <td>0.283(1.27x slower)</td>
-  </tr>
-</table>
-
-### Simple Dijkstra's algorithm implementation [source code](./test/performance_dijkstra.rb)
-Heaps that support change_priority operation use it. Heaps that do not support it use dijkstra implementation that do not rely on change_priority instead and do additional pops and pushes instead(see Dijkstra-NoDec from [Priority Queues and Dijkstra’s Algorithm](https://www3.cs.stonybrook.edu/~rezaul/papers/TR-07-54.pdf)).
-<table>
-  <tr>
-    <th colspan="4">ruby 3.1.0p0 (2021-12-25 revision fb4df44d16) [x86_64-darwin21]</th>
+    <th colspan="4">ruby 3.1.2p20 (2022-04-12 revision 4491bb740a) +YJIT [x86_64-darwin21]</th>
   </tr>
   <tr>
     <th>Library</th>
@@ -594,113 +166,35 @@ Heaps that support change_priority operation use it. Heaps that do not support i
   <tr>
     <td>pairing_heap (SimplePairingHeap)</td>
     <td>25</td>
-    <td>61.386477</td>
-    <td>0.407</td>
-  </tr>
-  <tr>
-    <td>pairing_heap (PairingHeap)</td>
-    <td>22</td>
-    <td>62.044470</td>
-    <td>0.355(1.15x slower)</td>
-  </tr>
-  <tr>
-    <td>rb_heap</td>
-    <td>13</td>
-    <td>60.717112</td>
-    <td>0.214(1.90x slower)</td>
-  </tr>
-  <tr>
-    <td>lazy_priority_queue</td>
-    <td>10</td>
-    <td>61.730614</td>
-    <td>0.162(2.51x slower)</td>
-  </tr>
-  <tr>
-    <td>Fibonacci</td>
-    <td>10</td>
-    <td>65.899982</td>
-    <td>0.152(2.68x slower)</td>
-  </tr>
-  <tr>
-    <th colspan="4">ruby 3.1.0p0 (2021-12-25 revision fb4df44d16) +YJIT [x86_64-darwin21]</th>
-  </tr>
-  <tr>
-    <th>Library</th>
-    <th>Iterations</th>
-    <th>Seconds</th>
-    <th>Iterations per second</th>
-  </tr>
-  <tr>
-    <td>pairing_heap (SimplePairingHeap)</td>
-    <td>29</td>
-    <td>61.656995</td>
-    <td>0.471</td>
-  </tr>
-  <tr>
-    <td>pairing_heap (PairingHeap)</td>
-    <td>24</td>
-    <td>61.813482</td>
-    <td>0.389(1.21x slower)</td>
+    <td>60.423579</td>
+    <td>0.414</td>
   </tr>
   <tr>
     <td>rb_heap</td>
     <td>19</td>
-    <td>62.191040</td>
-    <td>0.306(1.54x slower)</td>
-  </tr>
-  <tr>
-    <td>Fibonacci</td>
-    <td>18</td>
-    <td>60.062072</td>
-    <td>0.300(1.57x slower)</td>
-  </tr>
-  <tr>
-    <td>lazy_priority_queue</td>
-    <td>12</td>
-    <td>60.860292</td>
-    <td>0.197(2.38x slower)</td>
-  </tr>
-  <tr>
-    <th colspan="4">jruby 9.3.3.0 (2.6.8) 2022-01-19 b26de1f5c5 OpenJDK 64-Bit Server VM 16.0.1+9-24 on 16.0.1+9-24 +jit [darwin-x86_64]</th>
-  </tr>
-  <tr>
-    <th>Library</th>
-    <th>Iterations</th>
-    <th>Seconds</th>
-    <th>Iterations per second</th>
-  </tr>
-  <tr>
-    <td>pairing_heap (SimplePairingHeap)</td>
-    <td>24</td>
-    <td>61.972936</td>
-    <td>0.387</td>
+    <td>60.869907</td>
+    <td>0.312(1.33x slower)</td>
   </tr>
   <tr>
     <td>pairing_heap (PairingHeap)</td>
-    <td>20</td>
-    <td>62.178839</td>
-    <td>0.322(1.20x slower)</td>
-  </tr>
-  <tr>
-    <td>lazy_priority_queue</td>
-    <td>14</td>
-    <td>61.540058s</td>
-    <td>0.228(1.70x slower)</td>
-  </tr>
-  <tr>
-    <td>rb_heap</td>
-    <td>14</td>
-    <td>62.125831</td>
-    <td>0.225(1.72x slower)</td>
+    <td>17</td>
+    <td>61.389127</td>
+    <td>0.277(1.49x slower)</td>
   </tr>
   <tr>
     <td>Fibonacci</td>
-    <td>10</td>
-    <td>62.319669</td>
-    <td>0.155(2.41x slower)</td>
+    <td>14</td>
+    <td>64.417807</td>
+    <td>0.217(1.90x slower)</td>
   </tr>
   <tr>
-    <th colspan="4">jruby 9.3.3.0 (2.6.8) 2022-01-19 b26de1f5c5 OpenJDK 64-Bit Server VM 16.0.1+9-24 on 16.0.1+9-24 +indy +jit [darwin-x86_64]</th>
+    <td>lazy_priority_queue</td>
+    <td>11</td>
+    <td>63.151856</td>
+    <td>0.174(2.38x slower)</td>
+  </tr>
+  <tr>
+    <th colspan="4">jruby 9.3.7.0 (2.6.8) 2022-08-16 c79ef237e0 OpenJDK 64-Bit Server VM 17.0.2+8-86 on 17.0.2+8-86 +indy +jit [x86_64-darwin]</th>
   </tr>
   <tr>
     <th>Library</th>
@@ -711,32 +205,572 @@ Heaps that support change_priority operation use it. Heaps that do not support i
   <tr>
     <td>pairing_heap (SimplePairingHeap)</td>
     <td>47</td>
-    <td>61.192519</td>
-    <td>0.770</td>
+    <td>60.391633</td>
+    <td>0.778</td>
   </tr>
   <tr>
     <td>rb_heap</td>
-    <td>39</td>
-    <td>61.028398</td>
-    <td>0.639(1.20x slower)</td>
+    <td>34</td>
+    <td>60.878639</td>
+    <td>0.559(1.39x slower)</td>
   </tr>
   <tr>
     <td>pairing_heap (PairingHeap)</td>
-    <td>36</td>
-    <td>60.035760</td>
-    <td>0.601(1.28x slower)</td>
+    <td>32</td>
+    <td>61.211985</td>
+    <td>0.523(1.49x slower)</td>
+  </tr>
+  <tr>
+    <td>Fibonacci</td>
+    <td>23</td>
+    <td>60.297670</td>
+    <td>0.382(2.04x slower)</td>
+  </tr>
+  <tr>
+    <td>lazy_priority_queue</td>
+    <td>23</td>
+    <td>61.973538</td>
+    <td>0.371(2.10x slower)</td>
+  </tr>
+  <tr>
+    <th colspan="4">truffleruby 22.2.0, like ruby 3.0.3, GraalVM CE JVM [x86_64-darwin]</th>
+  </tr>
+  <tr>
+    <th>Library</th>
+    <th>Iterations</th>
+    <th>Seconds</th>
+    <th>Iterations per second</th>
+  </tr>
+  <tr>
+    <td>pairing_heap (SimplePairingHeap)</td>
+    <td>206</td>
+    <td>60.191686</td>
+    <td>3.433</td>
+  </tr>
+  <tr>
+    <td>rb_heap</td>
+    <td>97</td>
+    <td>60.134011</td>
+    <td>1.614(1.93x slower)</td>
+  </tr>
+  <tr>
+    <td>pairing_heap (PairingHeap)</td>
+    <td>85</td>
+    <td>60.193608s</td>
+    <td>1.434(2.40x slower)</td>
+  </tr>
+  <tr>
+    <td>lazy_priority_queue</td>
+    <td>19</td>
+    <td>63.212429</td>
+    <td>0.301(11.45x slower)</td>
+  </tr>
+  <tr>
+    <td>Fibonacci</td>
+    <td>2</td>
+    <td>83.508571</td>
+    <td>0.024(143.70x slower)</td>
+  </tr>
+</table>
+
+### Stress test with changing priority(N = 1000) [source code](./test/performance_with_change_priority.rb)
+A stress test of 1,501,500 operations: starting with 1,000 pushes/1000 change_priorities/0 pops, following 999 pushes/999 change_priorities/1 pop, and so on till 0 pushes/0 change_priorities/1000 pops.
+<table>
+  <tr>
+    <th colspan="4">ruby 3.1.2p20 (2022-04-12 revision 4491bb740a) [x86_64-darwin21]</th>
+  </tr>
+  <tr>
+    <th>Library</th>
+    <th>Iterations</th>
+    <th>Seconds</th>
+    <th>Iterations per second</th>
+  </tr>
+  <tr>
+    <td>pairing_heap</td>
+    <td>15</td>
+    <td>62.946988</td>
+    <td>0.238</td>
+  </tr>
+  <tr>
+    <td>lazy_priority_queue</td>
+    <td>9</td>
+    <td>61.876691</td>
+    <td>0.145(1.64x slower)</td>
+  </tr>
+  <tr>
+    <td>Fibonacci</td>
+    <td>8</td>
+    <td>67.809982</td>
+    <td>0.118(2.02x slower)</td>
+  </tr>
+  <tr>
+    <th colspan="4">ruby 3.1.2p20 (2022-04-12 revision 4491bb740a) +YJIT [x86_64-darwin21]</th>
+  </tr>
+  <tr>
+    <th>Library</th>
+    <th>Iterations</th>
+    <th>Seconds</th>
+    <th>Iterations per second</th>
+  </tr>
+  <tr>
+    <td>pairing_heap</td>
+    <td>16</td>
+    <td>62.576693</td>
+    <td>0.256</td>
+  </tr>
+  <tr>
+    <td>Fibonacci</td>
+    <td>13</td>
+    <td>63.164614</td>
+    <td>0.206(1.24x slower)</td>
+  </tr>
+  <tr>
+    <td>lazy_priority_queue</td>
+    <td>10</td>
+    <td>63.172995s</td>
+    <td>0.158(1.62x slower)</td>
+  </tr>
+  <tr>
+    <th colspan="4">jruby 9.3.7.0 (2.6.8) 2022-08-16 c79ef237e0 OpenJDK 64-Bit Server VM 17.0.2+8-86 on 17.0.2+8-86 +indy +jit [x86_64-darwin]</th>
+  </tr>
+  <tr>
+    <th>Library</th>
+    <th>Iterations</th>
+    <th>Seconds</th>
+    <th>Iterations per second</th>
+  </tr>
+  <tr>
+    <td>pairing_heap</td>
+    <td>28</td>
+    <td>60.280368</td>
+    <td>0.465</td>
+  </tr>
+  <tr>
+    <td>Fibonacci</td>
+    <td>22</td>
+    <td>61.405561</td>
+    <td>0.465(1.30x slower)</td>
+  </tr>
+  <tr>
+    <td>lazy_priority_queue</td>
+    <td>20</td>
+    <td>60.397535</td>
+    <td>0.331(1.40x slower)</td>
+  </tr>
+  <tr>
+    <th colspan="4">truffleruby 22.2.0, like ruby 3.0.3, GraalVM CE JVM [x86_64-darwin]</th>
+  </tr>
+  <tr>
+    <th>Library</th>
+    <th>Iterations</th>
+    <th>Seconds</th>
+    <th>Iterations per second</th>
+  </tr>
+  <tr>
+    <td>pairing_heap</td>
+    <td>70</td>
+    <td>60.663184</td>
+    <td>1.160</td>
+  </tr>
+  <tr>
+    <td>lazy_priority_queue</td>
+    <td>23</td>
+    <td>60.474587</td>
+    <td>0.382(3.04x slower)</td>
+  </tr>
+  <tr>
+    <td>Fibonacci</td>
+    <td>2</td>
+    <td>74.873854</td>
+    <td>0.027(43.44x slower)</td>
+  </tr>
+</table>
+
+### Stress test with changing priority or push/pop(test ignored in summary) [source code](./test/performance_pop_versus_change_priority.rb)
+Start with 500 pushes, then:
+  * If queue supports changing priority 500 change_priority calls, then 500 pops
+  * If does not support changing priority 500 push calls, then 1000 pops
+<table>
+  <tr>
+    <th colspan="4">ruby 3.1.2p20 (2022-04-12 revision 4491bb740a) [x86_64-darwin21]</th>
+  </tr>
+  <tr>
+    <th>Library</th>
+    <th>Iterations per second</th>
+  </tr>
+  <tr>
+    <td>pairing_heap (PairingHeap)</td>
+    <td>436.4</td>
+  </tr>
+  <tr>
+    <td>lazy_priority_queue</td>
+    <td>380.2(1.94x slower)</td>
+  </tr>
+  <tr>
+    <td>pairing_heap (SimplePairingHeap)</td>
+    <td>339.9.02(2.17x slower)</td>
+  </tr>
+  <tr>
+    <td>Fibonacci</td>
+    <td>313.9(2.35x slower)</td>
+  </tr>
+  <tr>
+    <td>rb_heap</td>
+    <td>194.7(3.78 slower)</td>
+  </tr>
+  <tr>
+    <th colspan="4">ruby 3.1.2p20 (2022-04-12 revision 4491bb740a) +YJIT [x86_64-darwin21]</th>
+  </tr>
+  <tr>
+    <th>Library</th>
+    <th>Iterations per second</th>
+  </tr>
+  <tr>
+    <td>pairing_heap</td>
+    <td>854.6</td>
+  </tr>
+  <tr>
+    <td>Fibonacci</td>
+    <td>651.3(1.31x slower)</td>
+  </tr>
+  <tr>
+    <td>lazy_priority_queue</td>
+    <td>453.6(1.88x slower)</td>
+  </tr>
+  <tr>
+    <td>pairing_heap(SimplePairingHeap)</td>
+    <td>390.9(2.19x slower)</td>
+  </tr>
+  <tr>
+    <td>rb_heap</td>
+    <td>268.8(3.18x slower)</td>
+  </tr>
+  <tr>
+    <th colspan="4">jruby 9.3.7.0 (2.6.8) 2022-08-16 c79ef237e0 OpenJDK 64-Bit Server VM 17.0.2+8-86 on 17.0.2+8-86 +indy +jit [x86_64-darwin]</th>
+  </tr>
+  <tr>
+    <th>Library</th>
+    <th>Iterations per second</th>
+  </tr>
+  <tr>
+    <td>pairing_heap(PairingHeap)</td>
+    <td>1591</td>
+  </tr>
+  <tr>
+    <td>Fibonacci</td>
+    <td>1092(1.46x slower)</td>
+  </tr>
+  <tr>
+    <td>lazy_priority_queue</td>
+    <td>986(1.61x slower)</td>
+  </tr>
+  <tr>
+    <td>pairing_heap(SimplePairingHeap)</td>
+    <td>562(2.37x slower)</td>
+  </tr>
+  <tr>
+    <td>rb_heap</td>
+    <td>623(2.55x slower)</td>
+  </tr>
+  <tr>
+    <th colspan="4">truffleruby 22.2.0, like ruby 3.0.3, GraalVM CE JVM [x86_64-darwin]</th>
+  </tr>
+  <tr>
+    <th>Library</th>
+    <th>Iterations per second</th>
+  </tr>
+  <tr>
+    <td>pairing_heap(PairingHeap)</td>
+    <td>7404</td>
+  </tr>
+  <tr>
+    <td>pairing_heap(SimplePairingHeap)</td>
+    <td>5104(1.45x slower)</td>
+  </tr>
+  <tr>
+    <td>rb_heap</td>
+    <td>1575(4.70x slower)</td>
+  </tr>
+  <tr>
+    <td>Fibonacci</td>
+    <td>1258(5.88x slower)</td>
+  </tr>
+  <tr>
+    <td>lazy_priority_queue</td>
+    <td>1004(7.38x slower)</td>
+  </tr>
+</table>
+
+### Dijkstra's algorithm with RGL [source code](./test/performance_rgl.rb)
+<table>
+  <tr>
+    <th colspan="4">ruby 3.1.2p20 (2022-04-12 revision 4491bb740a) [x86_64-darwin21]</th>
+  </tr>
+  <tr>
+    <th>Library</th>
+    <th>Iterations</th>
+    <th>Seconds</th>
+    <th>Iterations per second</th>
+  </tr>
+  <tr>
+    <td>pairing_heap</td>
+    <td>9</td>
+    <td>61.469343</td>
+    <td>0.116</td>
+  </tr>
+  <tr>
+    <td>lazy_priority_queue</td>
+    <td>8</td>
+    <td>64.312672</td>
+    <td>0.125(1.18x slower)</td>
+  </tr>
+  <tr>
+    <td>Fibonacci</td>
+    <td>7</td>
+    <td>60.555716</td>
+    <td>0.116(1.27x slower)</td>
+  </tr>
+  <tr>
+    <th colspan="4">ruby 3.1.2p20 (2022-04-12 revision 4491bb740a) +YJIT [x86_64-darwin21]</th>
+  </tr>
+  <tr>
+    <th>Library</th>
+    <th>Iterations</th>
+    <th>Seconds</th>
+    <th>Iterations per second</th>
+  </tr>
+  <tr>
+    <td>pairing_heap</td>
+    <td>10</td>
+    <td>65.160945s</td>
+    <td>0.154</td>
+  </tr>
+  <tr>
+    <td>Fibonacci</td>
+    <td>9</td>
+    <td>61.950587</td>
+    <td>0.145(1.06x slower)</td>
+  </tr>
+  <tr>
+    <td>lazy_priority_queue</td>
+    <td>9</td>
+    <td>66.592123</td>
+    <td>0.135(1.14x slower)</td>
+  </tr>
+  <tr>
+    <th colspan="4">jruby 9.3.7.0 (2.6.8) 2022-08-16 c79ef237e0 OpenJDK 64-Bit Server VM 17.0.2+8-86 on 17.0.2+8-86 +indy +jit [x86_64-darwin]</th>
+  </tr>
+  <tr>
+    <th>Library</th>
+    <th>Iterations</th>
+    <th>Seconds</th>
+    <th>Iterations per second</th>
+  </tr>
+  <tr>
+    <td>lazy_priority_queue</td>
+    <td>20</td>
+    <td>61.149944</td>
+    <td>0.328</td>
+  </tr>
+  <tr>
+    <td>pairing_heap</td>
+    <td>20</td>
+    <td>61.210225s</td>
+    <td>0.328</td>
+  </tr>
+  <tr>
+    <td>Fibonacci</td>
+    <td>18</td>
+    <td>62.330882</td>
+    <td>0.292(1.12x slower)</td>
+  </tr>
+  <tr>
+    <th colspan="4">truffleruby 22.2.0, like ruby 3.0.3, GraalVM CE JVM [x86_64-darwin]</th>
+  </tr>
+  <tr>
+    <th>Library</th>
+    <th>Iterations</th>
+    <th>Seconds</th>
+    <th>Iterations per second</th>
+  </tr>
+  <tr>
+    <td>pairing_heap</td>
+    <td>59</td>
+    <td>60.053843</td>
+    <td>0.991</td>
+  </tr>
+  <tr>
+    <td>lazy_priority_queue</td>
+    <td>34</td>
+    <td>60.586461</td>
+    <td>0.563(1.76x slower)</td>
+  </tr>
+  <tr>
+    <td>Fibonacci</td>
+    <td>31</td>
+    <td>60.633711</td>
+    <td>0.520(1.90x slower)</td>
+  </tr>
+</table>
+
+### Simple Dijkstra's algorithm implementation [source code](./test/performance_dijkstra.rb)
+Heaps that support change_priority operation use it. Heaps that do not support it use dijkstra implementation that do not rely on change_priority instead and do additional pops and pushes instead(see Dijkstra-NoDec from [Priority Queues and Dijkstra’s Algorithm](https://www3.cs.stonybrook.edu/~rezaul/papers/TR-07-54.pdf)).
+<table>
+  <tr>
+    <th colspan="4">ruby 3.1.2p20 (2022-04-12 revision 4491bb740a) [x86_64-darwin21]</th>
+  </tr>
+  <tr>
+    <th>Library</th>
+    <th>Iterations</th>
+    <th>Seconds</th>
+    <th>Iterations per second</th>
+  </tr>
+  <tr>
+    <td>pairing_heap (SimplePairingHeap)</td>
+    <td>28</td>
+    <td>62.100299</td>
+    <td>0.451</td>
+  </tr>
+  <tr>
+    <td>pairing_heap (PairingHeap)</td>
+    <td>23</td>
+    <td>60.633153</td>
+    <td>0.380(1.19x slower)</td>
+  </tr>
+  <tr>
+    <td>rb_heap</td>
+    <td>14</td>
+    <td>62.019763</td>
+    <td>0.226(2.00x slower)</td>
+  </tr>
+  <tr>
+    <td>lazy_priority_queue</td>
+    <td>11</td>
+    <td>63.105064s</td>
+    <td>0.174(2.58x slower)</td>
+  </tr>
+  <tr>
+    <td>Fibonacci</td>
+    <td>10</td>
+    <td>64.407187</td>
+    <td>0.155(2.90x slower)</td>
+  </tr>
+  <tr>
+    <th colspan="4">ruby 3.1.2p20 (2022-04-12 revision 4491bb740a) +YJIT [x86_64-darwin21]</th>
+  </tr>
+  <tr>
+    <th>Library</th>
+    <th>Iterations</th>
+    <th>Seconds</th>
+    <th>Iterations per second</th>
+  </tr>
+  <tr>
+    <td>pairing_heap (SimplePairingHeap)</td>
+    <td>32</td>
+    <td>61.289321</td>
+    <td>0.522</td>
+  </tr>
+  <tr>
+    <td>pairing_heap (PairingHeap)</td>
+    <td>26</td>
+    <td>60.657625</td>
+    <td>0.429(1.22x slower)</td>
+  </tr>
+  <tr>
+    <td>rb_heap</td>
+    <td>19</td>
+    <td>60.710888s</td>
+    <td>0.313(1.67x slower)</td>
+  </tr>
+  <tr>
+    <td>Fibonacci</td>
+    <td>19</td>
+    <td>61.471203</td>
+    <td>0.310(1.69x slower)</td>
+  </tr>
+  <tr>
+    <td>lazy_priority_queue</td>
+    <td>12</td>
+    <td>60.125779</td>
+    <td>0.200(2.61x slower)</td>
+  </tr>
+  <tr>
+    <th colspan="4">jruby 9.3.7.0 (2.6.8) 2022-08-16 c79ef237e0 OpenJDK 64-Bit Server VM 17.0.2+8-86 on 17.0.2+8-86 +indy +jit [x86_64-darwin]</th>
+  </tr>
+  <tr>
+    <th>Library</th>
+    <th>Iterations</th>
+    <th>Seconds</th>
+    <th>Iterations per second</th>
+  </tr>
+  <tr>
+    <td>pairing_heap (SimplePairingHeap)</td>
+    <td>46</td>
+    <td>61.226924</td>
+    <td>0.753</td>
+  </tr>
+  <tr>
+    <td>rb_heap</td>
+    <td>38</td>
+    <td>60.563995</td>
+    <td>0.628(1.20x slower)</td>
+  </tr>
+  <tr>
+    <td>pairing_heap (PairingHeap)</td>
+    <td>37</td>
+    <td>60.928350</td>
+    <td>0.608(1.24x slower)</td>
   </tr>
   <tr>
     <td>Fibonacci</td>
     <td>28</td>
-    <td>61.599202</td>
-    <td>0.456(1.69x slower)</td>
+    <td>61.136970</td>
+    <td>0.461(1.63x slower)</td>
   </tr>
   <tr>
     <td>lazy_priority_queue</td>
     <td>22</td>
-    <td>60.540367</td>
-    <td>0.364(2.12x slower)</td>
+    <td>62.214796</td>
+    <td>0.354(2.13x slower)</td>
+  </tr>
+  <tr>
+    <th colspan="4">truffleruby 22.2.0, like ruby 3.0.3, GraalVM CE JVM [x86_64-darwin]</th>
+  </tr>
+  <tr>
+    <th>Library</th>
+    <th>Iterations</th>
+    <th>Seconds</th>
+    <th>Iterations per second</th>
+  </tr>
+  <tr>
+    <td>pairing_heap (SimplePairingHeap)</td>
+    <td>176</td>
+    <td>60.029817</td>
+    <td>3.006</td>
+  </tr>
+  <tr>
+    <td>pairing_heap (PairingHeap)</td>
+    <td>124</td>
+    <td>60.366607</td>
+    <td>2.078(1.45x slower)</td>
+  </tr>
+  <tr>
+    <td>rb_heap</td>
+    <td>95</td>
+    <td>60.021043</td>
+    <td>1.585(1.90x slower)</td>
+  </tr>
+  <tr>
+    <td>Fibonacci</td>
+    <td>38</td>
+    <td>60.020976</td>
+    <td>0.636(4.72x slower)</td>
+  </tr>
+  <tr>
+    <td>lazy_priority_queue</td>
+    <td>27</td>
+    <td>61.349925</td>
+    <td>0.445(6.75x slower)</td>
   </tr>
 </table>
 
@@ -744,7 +778,7 @@ Heaps that support change_priority operation use it. Heaps that do not support i
 #### Change priority required
 <table>
   <tr>
-    <th colspan="4">ruby 3.1.0p0 (2021-12-25 revision fb4df44d16) [x86_64-darwin21]</th>
+    <th colspan="4">ruby 3.1.2p20 (2022-04-12 revision 4491bb740a) [x86_64-darwin21]</th>
   </tr>
   <tr>
     <th>Library</th>
@@ -756,14 +790,14 @@ Heaps that support change_priority operation use it. Heaps that do not support i
   </tr>
   <tr>
     <td>lazy_priority_queue</td>
-    <td>1.523x slower</td>
+    <td>1.688x slower</td>
   </tr>
   <tr>
     <td>Fibonacci</td>
-    <td>1.751x slower</td>
+    <td>1.987x slower</td>
   </tr>
   <tr>
-    <th colspan="4">ruby 3.1.0p0 (2021-12-25 revision fb4df44d16) +YJIT [x86_64-darwin21]</th>
+    <th colspan="4">ruby 3.1.2p20 (2022-04-12 revision 4491bb740a) +YJIT [x86_64-darwin21]</th>
   </tr>
   <tr>
     <th>Library</th>
@@ -775,34 +809,14 @@ Heaps that support change_priority operation use it. Heaps that do not support i
   </tr>
   <tr>
     <td>Fibonacci</td>
-    <td>1.146x slower</td>
+    <td>1.256x slower</td>
   </tr>
   <tr>
     <td>lazy_priority_queue</td>
-    <td>1.482x slower</td>
+    <td>1.648x slower</td>
   </tr>
   <tr>
-    <th colspan="4">jruby 9.3.3.0 (2.6.8) 2022-01-19 b26de1f5c5 OpenJDK 64-Bit Server VM 16.0.1+9-24 on 16.0.1+9-24 +jit [darwin-x86_64]</th>
-  </tr>
-  <tr>
-    <th>Library</th>
-    <th>Slower geometric mean</th>
-  </tr>
-  <tr>
-    <td>pairing_heap</td>
-    <td>1</td>
-  </tr>
-  <tr>
-    <td>lazy_priority_queue</td>
-    <td>1.153x slower</td>
-
-  </tr>
-  <tr>
-    <td>Fibonacci</td>
-    <td>1.793x slower</td>
-  </tr>
-  <tr>
-    <th colspan="4">jruby 9.3.3.0 (2.6.8) 2022-01-19 b26de1f5c5 OpenJDK 64-Bit Server VM 16.0.1+9-24 on 16.0.1+9-24 +indy +jit [darwin-x86_64]</th>
+    <th colspan="4">jruby 9.3.7.0 (2.6.8) 2022-08-16 c79ef237e0 OpenJDK 64-Bit Server VM 17.0.2+8-86 on 17.0.2+8-86 +indy +jit [x86_64-darwin]</th>
   </tr>
   <tr>
     <th>Library</th>
@@ -814,18 +828,37 @@ Heaps that support change_priority operation use it. Heaps that do not support i
   </tr>
   <tr>
     <td>Fibonacci</td>
-    <td>1.222x slower</td>
+    <td>1.327x slower</td>
   </tr>
   <tr>
     <td>lazy_priority_queue</td>
-    <td>1.394x slower</td>
+    <td>1.383x slower</td>
+  </tr>
+  <tr>
+    <th colspan="4">truffleruby 22.2.0, like ruby 3.0.3, GraalVM CE JVM [x86_64-darwin]</th>
+  </tr>
+  <tr>
+    <th>Library</th>
+    <th>Slower geometric mean</th>
+  </tr>
+  <tr>
+    <td>pairing_heap</td>
+    <td>1</td>
+  </tr>
+  <tr>
+    <td>lazy_priority_queue</td>
+    <td>3.878x slower</td>
+  </tr>
+  <tr>
+    <td>Fibonacci</td>
+    <td>9.889x slower</td>
   </tr>
 </table>
 
 #### Change priority not required
 <table>
   <tr>
-    <th colspan="4">ruby 3.1.0p0 (2021-12-25 revision fb4df44d16) [x86_64-darwin21]</th>
+    <th colspan="4">ruby 3.1.2p20 (2022-04-12 revision 4491bb740a) [x86_64-darwin21]</th>
   </tr>
   <tr>
     <th>Library</th>
@@ -837,22 +870,22 @@ Heaps that support change_priority operation use it. Heaps that do not support i
   </tr>
   <tr>
     <td>pairing_heap (PairingHeap)</td>
-    <td>1.209x slower</td>
+    <td>1.318x slower</td>
   </tr>
   <tr>
     <td>rb_heap</td>
-    <td>1.954x slower</td>
+    <td>1.8x slower</td>
   </tr>
   <tr>
     <td>lazy_priority_queue</td>
-    <td>2.235x slower</td>
+    <td>2.519x slower</td>
   </tr>
   <tr>
     <td>Fibonacci</td>
-    <td>2.588x slower</td>
+    <td>2.989x slower</td>
   </tr>
   <tr>
-    <th colspan="4">ruby 3.1.0p0 (2021-12-25 revision fb4df44d16) +YJIT [x86_64-darwin21]</th>
+    <th colspan="4">ruby 3.1.2p20 (2022-04-12 revision 4491bb740a) +YJIT [x86_64-darwin21]</th>
   </tr>
   <tr>
     <th>Library</th>
@@ -864,22 +897,49 @@ Heaps that support change_priority operation use it. Heaps that do not support i
   </tr>
   <tr>
     <td>pairing_heap (PairingHeap)</td>
-    <td>1.273x slower</td>
-  </tr>
-  <tr>
-    <td>Fibonacci</td>
-    <td>1.590x slower</td>
+    <td>1.348x slower</td>
   </tr>
   <tr>
     <td>rb_heap</td>
-    <td>1.666x slower</td>
+    <td>1.490x slower</td>
+  </tr>
+  <tr>
+    <td>Fibonacci</td>
+    <td>1.792x slower</td>
   </tr>
   <tr>
     <td>lazy_priority_queue</td>
-    <td>2.230x slower</td>
+    <td>2.492x slower</td>
   </tr>
   <tr>
-    <th colspan="4">jruby 9.3.3.0 (2.6.8) 2022-01-19 b26de1f5c5 OpenJDK 64-Bit Server VM 16.0.1+9-24 on 16.0.1+9-24 +jit [darwin-x86_64]</th>
+    <th colspan="4">jruby 9.3.7.0 (2.6.8) 2022-08-16 c79ef237e0 OpenJDK 64-Bit Server VM 17.0.2+8-86 on 17.0.2+8-86 +indy +jit [x86_64-darwin]</th>
+  </tr>
+  <tr>
+    <th>Library</th>
+    <th>Slower geometric mean</th>
+  </tr>
+  <tr>
+    <td>pairing_heap (SimplePairingHeap)</td>
+    <td>1</td>
+  </tr>
+  <tr>
+    <td>rb_heap</td>
+    <td>1.292x slower</td>
+  </tr>
+  <tr>
+    <td>pairing_heap (PairingHeap)</td>
+    <td>1.359x slower</td>
+  </tr>
+  <tr>
+    <td>lazy_priority_queue</td>
+    <td>2.115x slower</td>
+  </tr>
+  <tr>
+    <td>Fibonacci</td>
+    <td>1.824x slower</td>
+  </tr>
+  <tr>
+    <th colspan="4">truffleruby 22.2.0, like ruby 3.0.3, GraalVM CE JVM [x86_64-darwin]</th>
   </tr>
   <tr>
     <th>Library</th>
@@ -891,46 +951,19 @@ Heaps that support change_priority operation use it. Heaps that do not support i
   </tr>
   <tr>
     <td>pairing_heap (PairingHeap)</td>
-    <td>1.296x slower</td>
-  </tr>
-  <tr>
-    <td>lazy_priority_queue</td>
-    <td>1.607x slower</td>
+    <td>1.865x slower</td>
   </tr>
   <tr>
     <td>rb_heap</td>
-    <td>1.710x slower</td>
-  </tr>
-  <tr>
-    <td>Fibonacci</td>
-    <td>2.452x slower</td>
-  </tr>
-  <tr>
-    <th colspan="4">jruby 9.3.3.0 (2.6.8) 2022-01-19 b26de1f5c5 OpenJDK 64-Bit Server VM 16.0.1+9-24 on 16.0.1+9-24 +indy +jit [darwin-x86_64]</th>
-  </tr>
-  <tr>
-    <th>Library</th>
-    <th>Slower geometric mean</th>
-  </tr>
-  <tr>
-    <td>pairing_heap (SimplePairingHeap)</td>
-    <td>1</td>
-  </tr>
-  <tr>
-    <td>pairing_heap (PairingHeap)</td>
-    <td>1.353x slower</td>
-  </tr>
-  <tr>
-    <td>rb_heap</td>
-    <td>1.522x slower</td>
-  </tr>
-  <tr>
-    <td>Fibonacci</td>
-    <td>1.730x slower</td>
+    <td>1.915x slower</td>
   </tr>
   <tr>
     <td>lazy_priority_queue</td>
-    <td>2.044x slower</td>
+    <td>8.791x slower</td>
+  </tr>
+  <tr>
+    <td>Fibonacci</td>
+    <td>26.044x slower</td>
   </tr>
 </table>
 
