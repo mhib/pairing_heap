@@ -36,8 +36,8 @@ simple_heap.push(:a, 1)
 simple_heap.push(:b, 2)
 simple_heap.push(:c, 3)
 simple_heap.peek # => :a
-simple_heap.peek_priority # => [:a, 1]
-simple_heap.pop_priority # => [:a, 1]
+simple_heap.peek_priority # => 1
+simple_heap.pop_with_priority # => [:a, 1]
 simple_heap.pop # => :b
 
 # Min priority queue
@@ -931,12 +931,12 @@ Heaps that support change_priority operation use it. Heaps that do not support i
     <td>1.359x slower</td>
   </tr>
   <tr>
-    <td>lazy_priority_queue</td>
-    <td>2.115x slower</td>
-  </tr>
-  <tr>
     <td>Fibonacci</td>
     <td>1.824x slower</td>
+  </tr>
+  <tr>
+    <td>lazy_priority_queue</td>
+    <td>2.115x slower</td>
   </tr>
   <tr>
     <th colspan="4">truffleruby 22.2.0, like ruby 3.0.3, GraalVM CE JVM [x86_64-darwin]</th>
