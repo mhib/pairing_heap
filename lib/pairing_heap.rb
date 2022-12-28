@@ -57,12 +57,12 @@ module PairingHeap
       end
 
       def remove_from_parents_list!
-        if self.prev_sibling
-          self.prev_sibling.next_sibling = self.next_sibling
-          self.next_sibling.prev_sibling = self.prev_sibling if self.next_sibling
-        elsif self.parent.subheaps.equal?(self)
-          self.parent.subheaps = self.next_sibling
-          self.next_sibling.prev_sibling = nil if self.next_sibling
+        if prev_sibling
+          prev_sibling.next_sibling = next_sibling
+          next_sibling.prev_sibling = prev_sibling if next_sibling
+        else # parent.subheaps must equal self
+          parent.subheaps = next_sibling
+          next_sibling.prev_sibling = nil if next_sibling
         end
         self.prev_sibling = nil
         self.next_sibling = nil
@@ -70,7 +70,8 @@ module PairingHeap
     end
     private_constant :Node
 
-    # @param &block Optional heap property priority comparator. `<:=.to_proc` by default
+    # @yield [l_priority, r_priority] Optional heap property priority comparator. `<:=.to_proc` by default
+    # @yieldreturn [boolean] if `l_priority` is more, prioritary than `r_priority`, or the priorities are equal
     def initialize(&block)
       @root = nil
       @nodes = {}
@@ -83,20 +84,20 @@ module PairingHeap
     # @param priority Priority of the element
     # @raise [ArgumentError] if the element is already in the heap
     # @return [PairingHeap]
-    def push(elem, priority)
+    def push(elem, priority = elem)
       raise ArgumentError, "Element already in the heap" if @nodes.key?(elem)
 
       node = Node.new(elem, priority)
       @nodes[elem] = node
-      if @root
-        @root = meld(@root, node)
+      @root = if @root
+        meld(@root, node)
       else
-        @root = node
+        node
       end
       self
     end
-    alias enqueue push
-    alias offer push
+    alias_method :enqueue, :push
+    alias_method :offer, :push
 
     # Returns the element at the top of the heap
     #   Time Complexity: O(1)
@@ -104,10 +105,12 @@ module PairingHeap
       @root&.elem
     end
 
+    # @return [Object]
     def peek_priority
       @root&.priority
     end
 
+    # @return [Array(Object, Object)]
     def peek_with_priority
       [@root&.elem, @root&.priority]
     end
@@ -129,7 +132,7 @@ module PairingHeap
     def size
       @nodes.size
     end
-    alias length size
+    alias_method :length, :size
 
     # Removes element from the top of the heap and returns it
     #   Time Complexity: O(N)
@@ -148,7 +151,7 @@ module PairingHeap
       end
       elem
     end
-    alias dequeue pop
+    alias_method :dequeue, :pop
 
     # @return [Object]
     def pop_priority
@@ -221,20 +224,33 @@ module PairingHeap
     # Returns priority of the provided element
     #   Time Complexity: O(1)
     # @raise [ArgumentError] if the element is not in the heap
+    # @return [Object]
     def get_priority(elem)
       node = @nodes[elem]
       raise ArgumentError, "Provided element is not in heap" if node.nil?
       node.priority
     end
 
+    # Returns a pair where first element is success flag, and second element is priority
+    #   Time Complexity: O(1)
+    # @return [Array(false, nil)] if the element is not in heap
+    # @return [Array(true, Object)] if the element is in heap;
+    #  second element of returned tuple is the priority
+    def get_priority_if_exists(elem)
+      node = @nodes[elem]
+      return [false, nil] if node.nil?
+      [true, node.priority]
+    end
+
     # Returns enumerator of elements. No order guarantees are provided.
     # @return [Enumerator]
     def each
       return to_enum(__method__) { size } unless block_given?
-      NodeVisitor::visit_node(@root) { |x| yield x.elem }
+      NodeVisitor.visit_node(@root) { |x| yield x.elem }
     end
 
     private
+
     include MergePairs
 
     def meld(left, right)
@@ -266,7 +282,8 @@ module PairingHeap
     end
     private_constant :Node
 
-    # @param &block Optional heap property priority comparator. `<:=.to_proc` by default
+    # @yield [l_priority, r_priority] Optional heap property priority comparator. `<:=.to_proc` by default
+    # @yieldreturn [boolean] if `l_priority` is more, prioritary than `r_priority`, or the priorities are equal
     def initialize(&block)
       @root = nil
       @order = block || :<=.to_proc
@@ -278,18 +295,18 @@ module PairingHeap
     # @param elem Element to be pushed
     # @param priority Priority of the element
     # @return [PairingHeap]
-    def push(elem, priority)
+    def push(elem, priority = elem)
       node = Node.new(elem, priority)
-      if @root
-        @root = meld(@root, node)
+      @root = if @root
+        meld(@root, node)
       else
-        @root = node
+        node
       end
       @size += 1
       self
     end
-    alias enqueue push
-    alias offer push
+    alias_method :enqueue, :push
+    alias_method :offer, :push
 
     # Returns the element at the top of the heap
     #   Time Complexity: O(1)
@@ -297,10 +314,12 @@ module PairingHeap
       @root&.elem
     end
 
+    # @return [Object]
     def peek_priority
       @root&.priority
     end
 
+    # @return [Array(Object, Object)]
     def peek_with_priority
       [@root&.elem, @root&.priority]
     end
@@ -319,15 +338,13 @@ module PairingHeap
 
     # Time Complexity: O(1)
     # @return [Integer]
-    def size
-      @size
-    end
-    alias length size
+    attr_reader :size
+    alias_method :length, :size
 
-    # Removes element from the top of the heap and returns it
+    # Removes an element from the top of the heap and returns it
     #   Time Complexity: O(N)
     #   Amortized time Complexity: O(log(N))
-    # @raise [ArgumEntError] if the heap is empty
+    # @raise [ArgumentError] if the heap is empty
     def pop
       raise ArgumentError, "Cannot remove from an empty heap" if @root.nil?
       @size -= 1
@@ -338,7 +355,7 @@ module PairingHeap
 
       elem
     end
-    alias dequeue pop
+    alias_method :dequeue, :pop
 
     # @return [Object]
     def pop_priority
@@ -358,10 +375,11 @@ module PairingHeap
     # @return [Enumerator]
     def each
       return to_enum(__method__) { size } unless block_given?
-      NodeVisitor::visit_node(@root) { |x| yield x.elem }
+      NodeVisitor.visit_node(@root) { |x| yield x.elem }
     end
 
     private
+
     include MergePairs
 
     def meld(left, right)
@@ -378,16 +396,15 @@ module PairingHeap
     end
   end
 
-
   # Priority queue where the smallest priority is the most prioritary
   class MinPriorityQueue < PairingHeap
     def initialize
       super(&:<=)
     end
 
-    alias decrease_key change_priority
-    alias min peek
-    alias extract_min dequeue
+    alias_method :decrease_key, :change_priority
+    alias_method :min, :peek
+    alias_method :extract_min, :dequeue
   end
 
   # Priority queue where the highest priority is the most prioritary
@@ -396,9 +413,9 @@ module PairingHeap
       super(&:>=)
     end
 
-    alias increase_key change_priority
-    alias max peek
-    alias extract_max dequeue
+    alias_method :increase_key, :change_priority
+    alias_method :max, :peek
+    alias_method :extract_max, :dequeue
   end
 
   # Priority queue with change_priority, that accepts changing to a less prioritary priority
