@@ -219,6 +219,13 @@ module PairingHeap
       node.priority
     end
 
+    # Returns enumerator of elements. No order guarantees are provided.
+    # @return [Enumerator]
+    def each
+      return to_enum(__method__) { size } unless block_given?
+      NodeVisitor::visit_node(@root) { |x| yield x.elem }
+    end
+
     private
     include MergePairs
 
@@ -325,16 +332,25 @@ module PairingHeap
     end
     alias dequeue pop
 
+    # @return [Object]
     def pop_priority
       node = @root
       pop
       node.priority
     end
 
+    # @return [Array(Object, Object)]
     def pop_with_priority
       node = @root
       pop
       [node.elem, node.priority]
+    end
+
+    # Returns enumerator of elements. No order guarantees are provided.
+    # @return [Enumerator]
+    def each
+      return to_enum(__method__) { size } unless block_given?
+      NodeVisitor::visit_node(@root) { |x| yield x.elem }
     end
 
     private
@@ -394,4 +410,22 @@ module PairingHeap
       end
     end
   end
+
+  module NodeVisitor
+    extend self
+
+    def visit_node(node, &block)
+      return unless node
+
+      block.call(node)
+
+      if node.subheaps
+        visit_node(node.subheaps, &block)
+      end
+      if node.next_sibling
+        visit_node(node.next_sibling, &block)
+      end
+    end
+  end
+  private_constant :NodeVisitor
 end

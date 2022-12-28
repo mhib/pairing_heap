@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
-require "test_helper"
+require 'test_helper'
+require 'set'
 
 describe PairingHeap do
   class Element
@@ -44,7 +45,7 @@ describe PairingHeap do
           queue.delete(sample)
           items.delete(sample)
         end
-        
+
       end
 
       sorted_items = []
@@ -66,6 +67,17 @@ describe PairingHeap do
       queue = PairingHeap::PairingHeap.new
       queue.push(1, 1)
       _(-> { queue.change_priority(1, 2) }).must_raise(ArgumentError)
+    end
+
+    describe '#each' do
+      it 'returns all elements' do
+        queue = PairingHeap::PairingHeap.new
+        1.upto(500) do |i|
+          queue.push(i)
+        end
+        queue.pop
+        _(queue.each.to_set).must_equal(Set.new(2..500))
+      end
     end
   end
 
@@ -108,6 +120,17 @@ describe PairingHeap do
         queue.push(i, i)
       end
       _(queue.pop).must_equal(1)
+    end
+
+    describe '#each' do
+      it 'returns all elements' do
+        queue = PairingHeap::SimplePairingHeap.new
+        1.upto(500) do |i|
+          queue.push(i)
+        end
+        queue.pop
+        _(queue.each.to_set).must_equal(Set.new(2..500))
+      end
     end
   end
 
