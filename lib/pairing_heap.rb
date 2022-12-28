@@ -420,7 +420,7 @@ module PairingHeap
 
   # Priority queue with change_priority, that accepts changing to a less prioritary priority
   class SafeChangePriorityQueue < PairingHeap
-    # Changes a priority of the element to a more prioritary one
+    # Changes a priority of the element
     #   Time Complexity: O(N)
     #   Amortized Time Complexity: O(log(N))
     # @raise [ArgumentError] if the element is not in the heap
