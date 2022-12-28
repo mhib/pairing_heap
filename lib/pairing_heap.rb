@@ -150,7 +150,15 @@ module PairingHeap
     end
     alias dequeue pop
 
+    # @return [Object]
     def pop_priority
+      node = @root
+      pop
+      node.priority
+    end
+
+    # @return [Array(Object, Object)]
+    def pop_with_priority
       node = @root
       pop
       [node.elem, node.priority]
