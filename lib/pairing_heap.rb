@@ -71,7 +71,7 @@ module PairingHeap
     private_constant :Node
 
     # @yield [l_priority, r_priority] Optional heap property priority comparator. `<:=.to_proc` by default
-    # @yieldreturn [boolean] if `l_priority` is more, prioritary than `r_priority`, or the priorities are equal
+    # @yieldreturn [boolean] if `l_priority` is more prioritary than `r_priority`, or the priorities are equal
     def initialize(&block)
       @root = nil
       @nodes = {}
@@ -283,7 +283,7 @@ module PairingHeap
     private_constant :Node
 
     # @yield [l_priority, r_priority] Optional heap property priority comparator. `<:=.to_proc` by default
-    # @yieldreturn [boolean] if `l_priority` is more, prioritary than `r_priority`, or the priorities are equal
+    # @yieldreturn [boolean] if `l_priority` is more prioritary than `r_priority`, or the priorities are equal
     def initialize(&block)
       @root = nil
       @order = block || :<=.to_proc
