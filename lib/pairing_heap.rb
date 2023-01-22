@@ -83,7 +83,7 @@ module PairingHeap
     # @param elem Element to be pushed
     # @param priority Priority of the element
     # @raise [ArgumentError] if the element is already in the heap
-    # @return [PairingHeap]
+    # @return [self]
     def push(elem, priority = elem)
       raise ArgumentError, "Element already in the heap" if @nodes.key?(elem)
 
@@ -173,7 +173,7 @@ module PairingHeap
     # @param elem Element
     # @param priority New priority
     # @raise [ArgumentError] if the element is not in the heap or the new priority is less prioritary
-    # @return [PairingHeap]
+    # @return [self]
     def change_priority(elem, priority)
       node = @nodes[elem]
       raise ArgumentError, "Provided element is not in heap" if node.nil?
@@ -195,7 +195,7 @@ module PairingHeap
     #   Time Complexity: O(N)
     #   Amortized Time Complexity: O(log(N))
     # @raise [ArgumentError] if the element is not in the heap
-    # @return [PairingHeap]
+    # @return [self]
     def delete(elem)
       node = @nodes[elem]
       raise ArgumentError, "Provided element is not in heap" if node.nil?
@@ -294,7 +294,7 @@ module PairingHeap
     #   Time Complexity: O(1)
     # @param elem Element to be pushed
     # @param priority Priority of the element
-    # @return [PairingHeap]
+    # @return [self]
     def push(elem, priority = elem)
       node = Node.new(elem, priority)
       @root = if @root
@@ -424,7 +424,7 @@ module PairingHeap
     #   Time Complexity: O(N)
     #   Amortized Time Complexity: O(log(N))
     # @raise [ArgumentError] if the element is not in the heap
-    # @return [PairingHeap]
+    # @return [self]
     def change_priority(elem, priority)
       raise ArgumentError, "Provided element is not in heap" unless @nodes.key?(elem)
       if !@order[priority, @nodes[elem].priority]
