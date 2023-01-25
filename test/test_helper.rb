@@ -1,9 +1,11 @@
 # frozen_string_literal: true
 
-require "simplecov"
-SimpleCov.start do
-  enable_coverage :branch
-  primary_coverage :branch
+if RUBY_ENGINE != "truffleruby"
+  require "simplecov"
+  SimpleCov.start do
+    enable_coverage :branch
+    primary_coverage :branch
+  end
 end
 
 $LOAD_PATH.unshift File.expand_path("../lib", __dir__)
