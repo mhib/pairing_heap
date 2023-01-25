@@ -7,10 +7,9 @@ GEM
   remote: https://rubygems.org/
   specs:
     ast (2.4.2)
-    codecov (0.6.0)
-      simplecov (>= 0.15, < 0.22)
     docile (1.4.0)
     json (2.6.3)
+    json (2.6.3-java)
     language_server-protocol (3.17.0.2)
     minitest (5.15.0)
     parallel (1.22.1)
@@ -36,7 +35,7 @@ GEM
       rubocop (>= 1.7.0, < 2.0)
       rubocop-ast (>= 0.4.0)
     ruby-progressbar (1.11.0)
-    simplecov (0.21.2)
+    simplecov (0.22.0)
       docile (~> 1.1)
       simplecov-html (~> 0.11)
       simplecov_json_formatter (~> 0.1)
@@ -49,14 +48,15 @@ GEM
     unicode-display_width (2.3.0)
 
 PLATFORMS
+  universal-java-17
   x86_64-darwin-21
   x86_64-darwin-22
 
 DEPENDENCIES
-  codecov (= 0.6.0)
   minitest (~> 5.0)
   pairing_heap!
   rake (~> 13.0)
+  simplecov (~> 0.22.0)
   standard (~> 1.20)
 
 BUNDLED WITH
