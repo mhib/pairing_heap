@@ -12,10 +12,10 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
     - uses: actions/checkout@v3
-    - uses: ruby/setup-ruby@v1
+    - name: Set up ruby
+      uses: ruby/setup-ruby@v1
       with:
         ruby-version: ${{ matrix.ruby }}
-    - run: |
-        gem install bundler -v 2.3.6
-        bundle install
-        bundle exec rake
+        bundler-cache: true
+    - name: Run the default task
+      run: bundle exec rake
