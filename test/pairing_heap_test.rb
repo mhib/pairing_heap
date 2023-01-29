@@ -225,6 +225,20 @@ describe PairingHeap do
         _(queue.get_priority_if_exists(2)).must_equal([false, nil])
       end
     end
+
+    describe "#include?" do
+      it "returns true when element is in the heap" do
+        queue = PairingHeap::PairingHeap.new
+        queue.push(1, 2)
+        _(queue.include?(1)).must_equal(true)
+      end
+
+      it "returns false when element is in the heap" do
+        queue = PairingHeap::PairingHeap.new
+        queue.push(1, 2)
+        _(queue.include?(3)).must_equal(false)
+      end
+    end
   end
 
   describe PairingHeap::SimplePairingHeap do

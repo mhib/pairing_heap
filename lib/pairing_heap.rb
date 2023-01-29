@@ -221,6 +221,14 @@ module PairingHeap
       self
     end
 
+    # Check if element is in the heap
+    #   Time Complexity: O(1)
+    # @return [Boolean]
+    def include?(key)
+      @nodes.key?(key)
+    end
+    alias_method :exists?, :include?
+
     # Returns priority of the provided element
     #   Time Complexity: O(1)
     # @raise [ArgumentError] if the element is not in the heap
@@ -242,7 +250,8 @@ module PairingHeap
       [true, node.priority]
     end
 
-    # Returns enumerator of elements. No order guarantees are provided.
+    # Returns enumerator of elements.
+    # @note There are no order guarantees.
     # @return [Enumerator]
     def each
       return to_enum(__method__) { size } unless block_given?
@@ -371,7 +380,8 @@ module PairingHeap
       [node.elem, node.priority]
     end
 
-    # Returns enumerator of elements. No order guarantees are provided.
+    # Returns enumerator of elements.
+    # @note There are no order guarantees.
     # @return [Enumerator]
     def each
       return to_enum(__method__) { size } unless block_given?
