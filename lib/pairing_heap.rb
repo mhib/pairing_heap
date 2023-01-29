@@ -137,9 +137,10 @@ module PairingHeap
     # Removes element from the top of the heap and returns it
     #   Time Complexity: O(N)
     #   Amortized time Complexity: O(log(N))
-    # @raise [ArgumentError] if the heap is empty
+    # @return [Object] The top element
+    # @return [nil] If the heap is empty
     def pop
-      raise ArgumentError, "Cannot remove from an empty heap" if @root.nil?
+      return nil if @root.nil?
 
       elem = @root.elem
       @nodes.delete(elem)
@@ -153,18 +154,20 @@ module PairingHeap
     end
     alias_method :dequeue, :pop
 
+    # @see #pop
     # @return [Object]
     def pop_priority
       node = @root
       pop
-      node.priority
+      node&.priority
     end
 
+    # @see #pop
     # @return [Array(Object, Object)]
     def pop_with_priority
       node = @root
       pop
-      [node.elem, node.priority]
+      [node&.elem, node&.priority]
     end
 
     # Changes a priority of element to a more prioritary one
@@ -353,9 +356,10 @@ module PairingHeap
     # Removes an element from the top of the heap and returns it
     #   Time Complexity: O(N)
     #   Amortized time Complexity: O(log(N))
-    # @raise [ArgumentError] if the heap is empty
+    # @return [Object] The top element
+    # @return [nil] If the heap is empty
     def pop
-      raise ArgumentError, "Cannot remove from an empty heap" if @root.nil?
+      return nil if @root.nil?
       @size -= 1
 
       elem = @root.elem
@@ -366,18 +370,20 @@ module PairingHeap
     end
     alias_method :dequeue, :pop
 
+    # @see #pop
     # @return [Object]
     def pop_priority
       node = @root
       pop
-      node.priority
+      node&.priority
     end
 
+    # @see #pop
     # @return [Array(Object, Object)]
     def pop_with_priority
       node = @root
       pop
-      [node.elem, node.priority]
+      [node&.elem, node&.priority]
     end
 
     # Returns enumerator of elements.

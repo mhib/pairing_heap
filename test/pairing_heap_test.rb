@@ -78,9 +78,9 @@ class CommonMethodsSpec < Module
         end
 
         describe "#pop" do
-          it "throws when popping from an empty heap" do
+          it "returns nil if the heap is empty" do
             _(@queue).must_be_empty
-            _(-> { @queue.pop }).must_raise(ArgumentError)
+            _(@queue.pop).must_be_nil
           end
         end
 
