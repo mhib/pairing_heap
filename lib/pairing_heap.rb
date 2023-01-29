@@ -101,16 +101,20 @@ module PairingHeap
 
     # Returns the element at the top of the heap
     #   Time Complexity: O(1)
+    # @return [Object]
+    # @return [nil] if the heap is empty
     def peek
       @root&.elem
     end
 
     # @return [Object]
+    # @return [nil] if the heap is empty
     def peek_priority
       @root&.priority
     end
 
     # @return [Array(Object, Object)]
+    # @return [Array(nil, nil)] if the heap is empty
     def peek_with_priority
       [@root&.elem, @root&.priority]
     end
@@ -156,6 +160,7 @@ module PairingHeap
 
     # @see #pop
     # @return [Object]
+    # @return [nil] if the heap is empty
     def pop_priority
       node = @root
       pop
@@ -164,6 +169,7 @@ module PairingHeap
 
     # @see #pop
     # @return [Array(Object, Object)]
+    # @return [Array(nil, nil)] If the heap is empty
     def pop_with_priority
       node = @root
       pop
@@ -322,16 +328,20 @@ module PairingHeap
 
     # Returns the element at the top of the heap
     #   Time Complexity: O(1)
+    # @return [Object]
+    # @return [nil] If the heap is empty
     def peek
       @root&.elem
     end
 
     # @return [Object]
+    # @return [nil] If the heap is empty
     def peek_priority
       @root&.priority
     end
 
     # @return [Array(Object, Object)]
+    # @return [Array(nil, nil)] If the heap is empty
     def peek_with_priority
       [@root&.elem, @root&.priority]
     end
@@ -372,6 +382,7 @@ module PairingHeap
 
     # @see #pop
     # @return [Object]
+    # @return [nil] If the heap is empty
     def pop_priority
       node = @root
       pop
@@ -380,6 +391,7 @@ module PairingHeap
 
     # @see #pop
     # @return [Array(Object, Object)]
+    # @return [Array(nil, nil)] If the heap is empty
     def pop_with_priority
       node = @root
       pop
