@@ -264,7 +264,7 @@ module PairingHeap
     # @return [Enumerator]
     def each
       return to_enum(__method__) { size } unless block_given?
-      NodeVisitor.visit_node(@root) { |x| yield x.elem }
+      @nodes.each_value { |node| yield node.elem }
     end
 
     private
