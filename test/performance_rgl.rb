@@ -49,15 +49,15 @@ Benchmark.ips do |bm|
   bm.warmup = 15
 
   bm.report("Fibonacci") do
-    FibDijkstraAlgorithm.new(@graph, @edge_weights, DijkstraVisitor.new(@graph)).shortest_paths(1)
+    FibDijkstraAlgorithm.new(@graph, @edge_weights, RGL::DijkstraVisitor.new(@graph)).shortest_paths(1)
   end
 
   bm.report("pairing_heap") do
-    PairingDijkstraAlgorithm.new(@graph, @edge_weights, DijkstraVisitor.new(@graph)).shortest_paths(1)
+    PairingDijkstraAlgorithm.new(@graph, @edge_weights, RGL::DijkstraVisitor.new(@graph)).shortest_paths(1)
   end
 
   bm.report("lazy_priority_queue") do
-    LazyDijkstraAlgorithm.new(@graph, @edge_weights, DijkstraVisitor.new(@graph)).shortest_paths(1)
+    LazyDijkstraAlgorithm.new(@graph, @edge_weights, RGL::DijkstraVisitor.new(@graph)).shortest_paths(1)
   end
 
   bm.compare!
