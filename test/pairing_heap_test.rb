@@ -37,6 +37,20 @@ class CommonMethodsSpec < Module
           end
         end
 
+        describe "#each_with_priority" do
+          it "returns all elements" do
+            1.upto(500) do |i|
+              @queue.push(i)
+            end
+            @queue.pop
+            _(@queue.each_with_priority.to_set).must_equal(Set.new((2..500).map { |x| [x, x] }))
+          end
+
+          it "returns no elements when empty" do
+            _(@queue.each_with_priority.to_a).must_equal([])
+          end
+        end
+
         describe "#peek_with_priority" do
           it "returns tuple with priority" do
             @queue.push(1, 2)

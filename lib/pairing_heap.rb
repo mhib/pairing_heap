@@ -261,10 +261,18 @@ module PairingHeap
 
     # Returns enumerator of elements.
     # @note There are no order guarantees.
-    # @return [Enumerator]
+    # @return [Enumerator<Object>]
     def each
       return to_enum(__method__) { size } unless block_given?
       @nodes.each_value { |node| yield node.elem }
+    end
+
+    # Returns enumerator of elements.
+    # @note There are no order guarantees.
+    # @return [Enumerator<Array(Object, Object)>]
+    def each_with_priority
+      return to_enum(__method__) { size } unless block_given?
+      @nodes.each_value { |node| yield [node.elem, node.priority] }
     end
 
     private
@@ -404,6 +412,14 @@ module PairingHeap
     def each
       return to_enum(__method__) { size } unless block_given?
       NodeVisitor.visit_node(@root) { |x| yield x.elem }
+    end
+
+    # @return [Enumerator<Array(object, object)>]
+    # Returns enumerator of elements.
+    # @note There are no order guarantees.
+    def each_with_priority
+      return to_enum(__method__) { size } unless block_given?
+      NodeVisitor.visit_node(@root) { |x| yield [x.elem, x.priority] }
     end
 
     private
