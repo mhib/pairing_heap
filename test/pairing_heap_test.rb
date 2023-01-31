@@ -219,10 +219,10 @@ describe PairingHeap do
         _(queue.get_priority(1)).must_equal(2)
       end
 
-      it "throws when element does not exist in heap" do
+      it "returns nil when element does not exist in heap" do
         queue = PairingHeap::PairingHeap.new
         queue.push(1, 2)
-        _(-> { queue.get_priority(2) }).must_raise(ArgumentError)
+        _(queue.get_priority(2)).must_be_nil
       end
     end
 

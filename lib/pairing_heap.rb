@@ -240,12 +240,11 @@ module PairingHeap
 
     # Returns priority of the provided element
     #   Time Complexity: O(1)
-    # @raise [ArgumentError] if the element is not in the heap
     # @return [Object]
+    # @return [nil] If element does not exist
     def get_priority(elem)
       node = @nodes[elem]
-      raise ArgumentError, "Provided element is not in heap" if node.nil?
-      node.priority
+      node&.priority
     end
 
     # Returns a pair where first element is success flag, and second element is priority
