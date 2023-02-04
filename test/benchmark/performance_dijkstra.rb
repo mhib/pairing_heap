@@ -2,7 +2,7 @@
 
 require "csv"
 require "benchmark/ips"
-require_relative "../lib/pairing_heap"
+require_relative "../../lib/pairing_heap"
 require "lazy_priority_queue"
 require_relative "fib"
 require "rb_heap"

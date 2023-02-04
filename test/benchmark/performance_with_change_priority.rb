@@ -2,7 +2,7 @@
 
 # Based on https://github.com/matiasbattocchia/lazy_priority_queue/blob/master/test/performance.rb
 require "benchmark/ips"
-require_relative "../lib/pairing_heap"
+require_relative "../../lib/pairing_heap"
 require "lazy_priority_queue"
 require_relative "fib"
 

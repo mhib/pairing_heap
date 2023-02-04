@@ -2,7 +2,7 @@
 
 require "rgl/dijkstra"
 require "rgl/adjacency"
-require_relative "../lib/pairing_heap"
+require_relative "../../lib/pairing_heap"
 require "csv"
 require "benchmark/ips"
 require_relative "fib"
