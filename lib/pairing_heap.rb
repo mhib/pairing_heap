@@ -260,6 +260,7 @@ module PairingHeap
 
     # Returns enumerator of elements.
     # @note There are no order guarantees.
+    # @yieldparam [Object] element Element in the heap
     # @return [Enumerator<Object>]
     def each
       return to_enum(__method__) { size } unless block_given?
@@ -268,7 +269,8 @@ module PairingHeap
 
     # Returns enumerator of elements.
     # @note There are no order guarantees.
-    # @return [Enumerator<Array(Object, Object)>]
+    # @return [Enumerator<Array(Object, Object)>] if no block given
+    # @yieldparam [Array(Object, Object)] element Element in the heap with its priority
     def each_with_priority
       return to_enum(__method__) { size } unless block_given?
       @nodes.each_value { |node| yield [node.elem, node.priority] }
@@ -407,13 +409,15 @@ module PairingHeap
 
     # Returns enumerator of elements.
     # @note There are no order guarantees.
-    # @return [Enumerator]
+    # @yieldparam [Object] element element in the heap
+    # @return [Enumerator<Object>] if no block given
     def each
       return to_enum(__method__) { size } unless block_given?
       NodeVisitor.visit_node(@root) { |x| yield x.elem }
     end
 
-    # @return [Enumerator<Array(object, object)>]
+    # @return [Enumerator<Array(Object, Object)>] if no block given
+    # @yieldparam [Array(Object, Object)] element Element in the heap with its priority
     # Returns enumerator of elements.
     # @note There are no order guarantees.
     def each_with_priority
