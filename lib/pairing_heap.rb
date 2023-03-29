@@ -191,8 +191,8 @@ module PairingHeap
       end
 
       node.priority = priority
-      return if node.parent.nil?
-      return if @order[node.parent.priority, node.priority]
+      return self if node.parent.nil?
+      return self if @order[node.parent.priority, node.priority]
 
       node.remove_from_parents_list!
       @root = meld(node, @root)
