@@ -23,16 +23,15 @@ end
 def get_costs(q)
   distance = Array.new(@neighbourhood.size, Float::INFINITY)
   distance[1] = 0
-  @neighbourhood.each_with_index do |value, vertex|
-    next unless value
-
-    q.push(vertex, distance[vertex])
-  end
+  q.push(1, 0)
   until q.empty?
     el = q.pop
     @neighbourhood[el].each do |edge|
       alt = distance[el] + edge.weight
-      if alt < distance[edge.to]
+      if distance[edge.to].infinite?
+        distance[edge.to] = alt
+        q.push(edge.to, alt)
+      elsif alt < distance[edge.to]
         distance[edge.to] = alt
         q.change_priority(edge.to, alt)
       end
@@ -52,11 +51,7 @@ end
 def get_cost_rb_heap(q)
   distance = Array.new(@neighbourhood.size, Float::INFINITY)
   distance[1] = 0
-  @neighbourhood.each_with_index do |value, vertex|
-    next unless value
-
-    q.add(Entry.new(vertex, distance[vertex]))
-  end
+  q.add(Entry.new(1, 0))
   until q.empty?
     entry = q.pop
     if entry.weight != distance[entry.vertex]
@@ -77,11 +72,7 @@ end
 def get_cost_simple_pairing_heap(q)
   distance = Array.new(@neighbourhood.size, Float::INFINITY)
   distance[1] = 0
-  @neighbourhood.each_with_index do |value, vertex|
-    next unless value
-
-    q.push(vertex, distance[vertex])
-  end
+  q.push(1, 0)
   until q.empty?
     el, weight = q.pop_with_priority
     if weight != distance[el]
