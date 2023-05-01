@@ -810,11 +810,11 @@ Heaps that support change_priority operation use it. Heaps that do not support i
   </tr>
   <tr>
     <td>lazy_priority_queue</td>
-    <td>2.493x slower</td>
+    <td>1.682x slower</td>
   </tr>
   <tr>
     <td>Fibonacci</td>
-    <td>2.218x slower</td>
+    <td>2.216x slower</td>
   </tr>
   <tr>
     <th colspan="4">jruby 9.4.2.0 (3.1.0) 2023-03-08 90d2913fda OpenJDK 64-Bit Server VM 17.0.2+8-86 on 17.0.2+8-86 +indy +jit [x86_64-darwin]</th>
