@@ -829,7 +829,7 @@ Heaps that support change_priority operation use it. Heaps that do not support i
   </tr>
   <tr>
     <td>lazy_priority_queue</td>
-    <td>1.274x slower</td>
+    <td>1.291x slower</td>
   </tr>
   <tr>
     <td>Fibonacci</td>
