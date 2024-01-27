@@ -296,6 +296,64 @@ describe PairingHeap do
       end
       _(queue.pop).must_equal(1)
     end
+
+    describe "#merge" do
+      it "merges 2 heaps correctly" do
+        first = PairingHeap::SimplePairingHeap.new
+        2.step(10, 2).to_a.shuffle.each { |x| first.push(x) }
+        second = PairingHeap::SimplePairingHeap.new
+        1.step(9, 2).to_a.shuffle.each { |x| second.push(x) }
+
+        first.merge(second)
+        _(second.size).must_equal(0)
+        _(second.peek).must_be_nil
+        _(first.size).must_equal(10)
+
+        sorted = []
+        sorted << first.pop until first.empty?
+
+        _(sorted).must_equal((1..10).to_a)
+      end
+
+      it "throws argument error if trying to merge with itself" do
+        queue = PairingHeap::SimplePairingHeap.new
+        queue.push(3)
+
+        _(-> { queue.merge(queue) }).must_raise(ArgumentError)
+      end
+
+      it "works correctly if the called heap is empty" do
+        first = PairingHeap::SimplePairingHeap.new
+        second = PairingHeap::SimplePairingHeap.new
+        (1..5).to_a.shuffle.each { |x| second.push(x) }
+
+        first.merge(second)
+        _(second.size).must_equal(0)
+        _(second.peek).must_be_nil
+        _(first.size).must_equal(5)
+
+        sorted = []
+        sorted << first.pop until first.empty?
+
+        _(sorted).must_equal((1..5).to_a)
+      end
+
+      it "works correctly if the provided heap is empty" do
+        first = PairingHeap::SimplePairingHeap.new
+        (1..5).to_a.shuffle.each { |x| first.push(x) }
+        second = PairingHeap::SimplePairingHeap.new
+
+        first.merge(second)
+        _(second.size).must_equal(0)
+        _(second.peek).must_be_nil
+        _(first.size).must_equal(5)
+
+        sorted = []
+        sorted << first.pop until first.empty?
+
+        _(sorted).must_equal((1..5).to_a)
+      end
+    end
   end
 
   describe PairingHeap::MinPriorityQueue do

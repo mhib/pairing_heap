@@ -425,6 +425,27 @@ module PairingHeap
       NodeVisitor.visit_node(@root) { |x| yield [x.elem, x.priority] }
     end
 
+    # Merges provided heap
+    #   Time Complexity: O(1)
+    # @param other SimplePairingHeap to be merged
+    # @return [self]
+    # @raise [ArgumentError] if the provided argument is self
+    # @note This method modifies the argument
+    def merge(other)
+      if equal?(other)
+        raise ArgumentError, "Cannot merge with itself"
+      end
+      other_root = other.root
+      @root = if @root
+        other_root ? meld(@root, other_root) : @root
+      else
+        other_root
+      end
+      @size += other.size
+      other.clear!
+      self
+    end
+
     private
 
     include MergePairs
@@ -440,6 +461,15 @@ module PairingHeap
       child.next_sibling = parent.subheaps
       parent.subheaps = child
       parent
+    end
+
+    protected
+
+    attr_reader :root
+
+    def clear!
+      @root = nil
+      @size = 0
     end
   end
 
