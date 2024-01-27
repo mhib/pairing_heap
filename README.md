@@ -101,8 +101,11 @@ This API is a drop-in replacement of [lazy_priority_queue](https://github.com/ma
 | dequeue           | O(n)            | O(log n)                  |
 | * change_priority | O(1)            | o(log n)                  |
 | * delete          | O(n)            | O(log n)                  |
+| ^ merge           | O(1)            | O(1)                      |
 
 `*` Not available in `SimplePairingHeap`
+
+`^` Only available in `SimplePairingHeap`
 
 ## Benchmarks
 I picked the three fastest pure Ruby priority queue implementations I was aware of for the comparison:
