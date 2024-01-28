@@ -353,6 +353,32 @@ describe PairingHeap do
 
         _(sorted).must_equal((1..5).to_a)
       end
+
+      it "handles many merge operations" do
+        heaps = (0..100).to_a.shuffle.map do |e|
+          PairingHeap::SimplePairingHeap.new.push(e)
+        end
+
+        while heaps.size > 1
+          first_idx = rand(0...heaps.size)
+          heaps[-1], heaps[first_idx] = heaps[first_idx], heaps[-1]
+          first = heaps.pop
+          second_idx = rand(0...heaps.size)
+          heaps[-1], heaps[second_idx] = heaps[second_idx], heaps[-1]
+          second = heaps.pop
+
+          heaps << first.merge(second)
+        end
+
+        res = heaps[0]
+
+        _(res.size).must_equal(101)
+
+        sorted = []
+        sorted << res.pop until res.empty?
+
+        _(sorted).must_equal((0..100).to_a)
+      end
     end
   end
 
