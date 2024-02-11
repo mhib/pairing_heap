@@ -19,7 +19,6 @@ Gem::Specification.new do |spec|
   spec.metadata["documentation_uri"] = "https://rubydoc.info/gems/pairing_heap"
   spec.metadata["rubygems_mfa_required"] = "true"
 
-
   spec.files = Dir.chdir(File.expand_path(__dir__)) do
     `git ls-files -z`.split("\x0").reject { |f| f.match(%r{\A(?:test|spec|features)/}) }
   end
