@@ -508,7 +508,7 @@ module PairingHeap
         delete(elem)
         push(elem, priority)
       else
-        super(elem, priority)
+        super
       end
     end
   end
