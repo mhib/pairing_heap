@@ -163,7 +163,7 @@ describe PairingHeap do
       sorted_items << queue.pop until queue.empty?
       sorted_items.map!(&:priority)
 
-      _(sorted_items).must_equal(sorted_items.sort)
+      _(sorted_items).must_equal(items.map(&:priority).sort)
     end
 
     it "does not crash with a large number of consecutive pushes" do
@@ -286,7 +286,7 @@ describe PairingHeap do
       sorted_items << queue.pop until queue.empty?
       sorted_items.map!(&:priority)
 
-      _(sorted_items).must_equal(sorted_items.sort)
+      _(sorted_items).must_equal(items.map(&:priority).sort)
     end
 
     it "does not crash with a large number of consecutive pushes" do
