@@ -63,6 +63,7 @@ GEM
     unicode-display_width (2.4.2)
 
 PLATFORMS
+  arm64-darwin-22
   universal-java-17
   x86_64-darwin-19
   x86_64-darwin-20
