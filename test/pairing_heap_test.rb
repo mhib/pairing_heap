@@ -81,6 +81,10 @@ class CommonMethodsSpec < Module
             _(@queue.pop_priority).must_equal(2)
             _(@queue).must_be_empty
           end
+
+          it "returns nil when empty" do
+            _(@queue.pop_priority).must_be_nil
+          end
         end
 
         describe "#pop_with_priority" do
@@ -88,6 +92,10 @@ class CommonMethodsSpec < Module
             @queue.push(1, 2)
             _(@queue.pop_with_priority).must_equal([1, 2])
             _(@queue).must_be_empty
+          end
+
+          it "return list of nils when empty" do
+            _(@queue.pop_with_priority).must_equal([nil, nil])
           end
         end
 
