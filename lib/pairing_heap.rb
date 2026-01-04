@@ -518,14 +518,20 @@ module PairingHeap
 
     def visit_node(node, &block)
       return unless node
+      stack = [node]
 
-      block.call(node)
+      until stack.empty?
+        node = stack.pop
 
-      if node.subheaps
-        visit_node(node.subheaps, &block)
-      end
-      if node.next_sibling
-        visit_node(node.next_sibling, &block)
+        block.call(node)
+
+        if node.subheaps
+          stack << node.subheaps
+        end
+
+        if node.next_sibling
+          stack << node.next_sibling
+        end
       end
     end
   end
