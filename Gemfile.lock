@@ -9,8 +9,9 @@ GEM
     ast (2.4.3)
     docile (1.4.1)
     drb (2.2.3)
-    json (2.18.0)
-    json (2.18.0-java)
+    jar-dependencies (0.6.1-java)
+    json (2.21.2)
+    json (2.21.2-java)
     language_server-protocol (3.17.0.5)
     lint_roller (1.1.0)
     logger (1.7.0)
@@ -26,8 +27,14 @@ GEM
     racc (1.8.1-java)
     rainbow (3.1.1)
     rake (13.3.1)
-    rbs (3.10.4)
+    rbs (4.2.0)
       logger
+      prism (>= 1.6.0)
+      tsort
+    rbs (4.2.0-java)
+      jar-dependencies (>= 0.1.7)
+      logger
+      prism (>= 1.6.0)
       tsort
     regexp_parser (2.11.3)
     rubocop (1.87.0)
@@ -80,7 +87,7 @@ DEPENDENCIES
   minitest (~> 6.0)
   pairing_heap!
   rake (~> 13.3)
-  rbs (~> 3.10)
+  rbs (~> 4.2)
   simplecov (~> 0.22.0)
   standard (~> 1.55)
 
@@ -88,8 +95,9 @@ CHECKSUMS
   ast (2.4.3) sha256=954615157c1d6a382bc27d690d973195e79db7f55e9765ac7c481c60bdb4d383
   docile (1.4.1) sha256=96159be799bfa73cdb721b840e9802126e4e03dfc26863db73647204c727f21e
   drb (2.2.3) sha256=0b00d6fdb50995fe4a45dea13663493c841112e4068656854646f418fda13373
-  json (2.18.0) sha256=b10506aee4183f5cf49e0efc48073d7b75843ce3782c68dbeb763351c08fd505
-  json (2.18.0-java) sha256=74706f684baeb1a40351ed26fc8fe6e958afa861320d1c28ff4eb7073b29c7aa
+  jar-dependencies (0.6.1-java) sha256=2746643482d139fd9cecb524b57df63b71d9b5d734c7275171701201e3164f23
+  json (2.21.2) sha256=1f1d3b7cf2b3ba1a69beca0bb6db13d5438b80bff3cd54cdaaa620b9b07c1c6a
+  json (2.21.2-java) sha256=f01521cd90639cc26b63040fb00d2b949f18f41ecaab5c82b02fb31d0b8b736c
   language_server-protocol (3.17.0.5) sha256=fd1e39a51a28bf3eec959379985a72e296e9f9acfce46f6a79d31ca8760803cc
   lint_roller (1.1.0) sha256=2c0c845b632a7d172cb849cc90c1bce937a28c5c8ccccb50dfd46a485003cc87
   logger (1.7.0) sha256=196edec7cc44b66cfb40f9755ce11b392f21f7967696af15d274dde7edff0203
@@ -102,7 +110,8 @@ CHECKSUMS
   racc (1.8.1-java) sha256=54f2e6d1e1b91c154013277d986f52a90e5ececbe91465d29172e49342732b98
   rainbow (3.1.1) sha256=039491aa3a89f42efa1d6dec2fc4e62ede96eb6acd95e52f1ad581182b79bc6a
   rake (13.3.1) sha256=8c9e89d09f66a26a01264e7e3480ec0607f0c497a861ef16063604b1b08eb19c
-  rbs (3.10.4) sha256=b17d7c4be4bb31a11a3b529830f0aa206a807ca42f2e7921a3027dfc6b7e5ce8
+  rbs (4.2.0) sha256=51f7b886dcc05bc09e10b901daa6a81829f6adc03101d6ca9ea4aac6103e0674
+  rbs (4.2.0-java) sha256=a19282d89c307dd6d33c6a72cc60f75b10d6d35a5996796e864789c903cddb3c
   regexp_parser (2.11.3) sha256=ca13f381a173b7a93450e53459075c9b76a10433caadcb2f1180f2c741fc55a4
   rubocop (1.87.0) sha256=b9d9ddf55116a513f8ef2c7ae660662d8b49301f118d3f0df61865b33a5c188d
   rubocop-ast (1.49.0) sha256=49c3676d3123a0923d333e20c6c2dbaaae2d2287b475273fddee0c61da9f71fd
