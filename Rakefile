@@ -12,4 +12,8 @@ Rake::TestTask.new(:test) do |t|
   t.test_files = FileList["test/**/*_test.rb"]
 end
 
-task default: %i[test standard]
+task :rbs do
+  sh "rbs validate sig/pairing_heap.rbs"
+end
+
+task default: %i[test standard rbs]
