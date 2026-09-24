@@ -1,0 +1,175 @@
+module PairingHeap
+  VERSION: String
+
+  # Pairing heap data structure implementation
+  # @see https://en.wikipedia.org/wiki/Pairing_heap
+  class PairingHeap[Elem, Priority]
+    # @yield [l_priority, r_priority] Optional heap property priority comparator. `<=.to_proc` by default
+    # @yieldreturn [bool] if `l_priority` is more prioritary than `r_priority`, or the priorities are equal
+    def initialize: () ?{ (Priority, Priority) -> boolish } -> void
+
+    # Pushes element to the heap.
+    #   Time Complexity: O(1)
+    # @raise [ArgumentError] if the element is already in the heap
+    def push: (Elem elem, ?Priority priority) -> self
+    alias enqueue push
+    alias offer push
+
+    # Returns the element at the top of the heap.
+    #   Time Complexity: O(1)
+    def peek: () -> Elem?
+
+    # Returns the priority of the element at the top of the heap.
+    #   Time Complexity: O(1)
+    def peek_priority: () -> Priority?
+
+    # Returns the element and its priority at the top of the heap.
+    #   Time Complexity: O(1)
+    def peek_with_priority: () -> [Elem, Priority] | [nil, nil]
+
+    # Time Complexity: O(1)
+    def empty?: () -> bool
+
+    # Time Complexity: O(1)
+    def any?: () -> bool
+
+    # Time Complexity: O(1)
+    def size: () -> Integer
+    alias length size
+
+    # Removes element from the top of the heap and returns it.
+    #   Time Complexity: O(N), Amortized: O(log N)
+    def pop: () -> Elem?
+    alias dequeue pop
+
+    # Removes element from the top of the heap and returns its priority.
+    #   Time Complexity: O(N), Amortized: O(log N)
+    def pop_priority: () -> Priority?
+
+    # Removes element from the top of the heap and returns it along with its priority.
+    #   Time Complexity: O(N), Amortized: O(log N)
+    def pop_with_priority: () -> [Elem, Priority] | [nil, nil]
+
+    # Changes a priority of element to a more prioritary one.
+    #   Time Complexity: O(1), Amortized: O(log N)
+    # @param elem Element
+    # @param priority New priority
+    # @raise [ArgumentError] if the element is not in the heap or the new priority is less prioritary
+    def change_priority: (Elem elem, Priority priority) -> self
+
+    # Removes element from the heap.
+    #   Time Complexity: O(N), Amortized: O(log N)
+    # @raise [ArgumentError] if the element is not in the heap
+    def delete: (Elem elem) -> self
+
+    # Check if element is in the heap.
+    #   Time Complexity: O(1)
+    def include?: (Elem key) -> bool
+    alias exists? include?
+
+    # Returns priority of the provided element.
+    #   Time Complexity: O(1)
+    def get_priority: (Elem elem) -> Priority?
+
+    # Returns [false, nil] if the element is not in heap, [true, priority] if it is.
+    #   Time Complexity: O(1)
+    def get_priority_if_exists: (Elem elem) -> [false, nil] | [true, Priority]
+
+    # Yields each element in the heap. No order guarantees.
+    def each: () { (Elem) -> void } -> void
+            | () -> Enumerator[Elem, void]
+
+    # Yields each [element, priority] pair in the heap. No order guarantees.
+    def each_with_priority: () { ([Elem, Priority]) -> void } -> void
+                          | () -> Enumerator[[Elem, Priority], void]
+  end
+
+  class SimplePairingHeap[Elem, Priority]
+    # @yield [l_priority, r_priority] Optional heap property priority comparator. `<=.to_proc` by default
+    # @yieldreturn [bool] if `l_priority` is more prioritary than `r_priority`, or the priorities are equal
+    def initialize: () ?{ (Priority, Priority) -> boolish } -> void
+
+    # Pushes element to the heap.
+    #   Time Complexity: O(1)
+    def push: (Elem elem, ?Priority priority) -> self
+    alias enqueue push
+    alias offer push
+
+    # Returns the element at the top of the heap.
+    #   Time Complexity: O(1)
+    def peek: () -> Elem?
+
+    # Returns the priority of the element at the top of the heap.
+    #   Time Complexity: O(1)
+    def peek_priority: () -> Priority?
+
+    # Returns the element and its priority at the top of the heap.
+    #   Time Complexity: O(1)
+    def peek_with_priority: () -> [Elem, Priority] | [nil, nil]
+
+    # Time Complexity: O(1)
+    def empty?: () -> bool
+
+    # Time Complexity: O(1)
+    def any?: () -> bool
+
+    # Time Complexity: O(1)
+    attr_reader size: Integer
+    alias length size
+
+    # Removes element from the top of the heap and returns it.
+    #   Time Complexity: O(N), Amortized: O(log N)
+    def pop: () -> Elem?
+    alias dequeue pop
+
+    # Removes element from the top of the heap and returns its priority.
+    #   Time Complexity: O(N), Amortized: O(log N)
+    def pop_priority: () -> Priority?
+
+    # Removes element from the top of the heap and returns it along with its priority.
+    #   Time Complexity: O(N), Amortized: O(log N)
+    def pop_with_priority: () -> [Elem, Priority] | [nil, nil]
+
+    # Yields each element in the heap. No order guarantees.
+    def each: () { (Elem) -> void } -> void
+            | () -> Enumerator[Elem, void]
+
+    # Yields each [element, priority] pair in the heap. No order guarantees.
+    def each_with_priority: () { ([Elem, Priority]) -> void } -> void
+                          | () -> Enumerator[[Elem, Priority], void]
+
+    # Merges provided heap into self.
+    #   Time Complexity: O(1)
+    # @raise [ArgumentError] if the provided argument is self
+    # @note Modifies the argument (clears it)
+    def merge: (SimplePairingHeap[Elem, Priority] other) -> self
+  end
+
+  # Priority queue where the smallest priority is the most prioritary
+  class MinPriorityQueue[Elem, Priority < Comparable[Priority]] < PairingHeap[Elem, Priority]
+    def initialize: () -> void
+
+    alias decrease_key change_priority
+    alias min peek
+    alias extract_min dequeue
+  end
+
+  # Priority queue where the highest priority is the most prioritary
+  class MaxPriorityQueue[Elem, Priority < Comparable[Priority]] < PairingHeap[Elem, Priority]
+    def initialize: () -> void
+
+    alias increase_key change_priority
+    alias max peek
+    alias extract_max dequeue
+  end
+
+  # Priority queue with change_priority that accepts changing to a less prioritary priority
+  class SafeChangePriorityQueue[Elem, Priority] < PairingHeap[Elem, Priority]
+    # Changes a priority of the element (accepts any direction).
+    #   Time Complexity: O(N), Amortized: O(log N)
+    # @param elem Element
+    # @param priority New priority
+    # @raise [ArgumentError] if the element is not in the heap
+    def change_priority: (Elem elem, Priority priority) -> self
+  end
+end
