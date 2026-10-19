@@ -13,7 +13,7 @@ Rake::TestTask.new(:test) do |t|
 end
 
 task :rbs do
-  sh "rbs validate sig/pairing_heap.rbs"
+  sh "rbs -I sig validate"
 end
 
 task default: %i[test standard rbs]

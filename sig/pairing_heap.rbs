@@ -25,7 +25,7 @@ module PairingHeap
 
     # Returns the element and its priority at the top of the heap.
     #   Time Complexity: O(1)
-    def peek_with_priority: () -> [Elem, Priority] | [nil, nil]
+    def peek_with_priority: () -> ([Elem, Priority] | [nil, nil])
 
     # Time Complexity: O(1)
     def empty?: () -> bool
@@ -48,7 +48,7 @@ module PairingHeap
 
     # Removes element from the top of the heap and returns it along with its priority.
     #   Time Complexity: O(N), Amortized: O(log N)
-    def pop_with_priority: () -> [Elem, Priority] | [nil, nil]
+    def pop_with_priority: () -> ([Elem, Priority] | [nil, nil])
 
     # Changes a priority of element to a more prioritary one.
     #   Time Complexity: O(1), Amortized: O(log N)
@@ -73,7 +73,7 @@ module PairingHeap
 
     # Returns [false, nil] if the element is not in heap, [true, priority] if it is.
     #   Time Complexity: O(1)
-    def get_priority_if_exists: (Elem elem) -> [false, nil] | [true, Priority]
+    def get_priority_if_exists: (Elem elem) -> ([false, nil] | [true, Priority])
 
     # Yields each element in the heap. No order guarantees.
     def each: () { (Elem) -> void } -> void
@@ -105,7 +105,7 @@ module PairingHeap
 
     # Returns the element and its priority at the top of the heap.
     #   Time Complexity: O(1)
-    def peek_with_priority: () -> [Elem, Priority] | [nil, nil]
+    def peek_with_priority: () -> ([Elem, Priority] | [nil, nil])
 
     # Time Complexity: O(1)
     def empty?: () -> bool
@@ -128,7 +128,7 @@ module PairingHeap
 
     # Removes element from the top of the heap and returns it along with its priority.
     #   Time Complexity: O(N), Amortized: O(log N)
-    def pop_with_priority: () -> [Elem, Priority] | [nil, nil]
+    def pop_with_priority: () -> ([Elem, Priority] | [nil, nil])
 
     # Yields each element in the heap. No order guarantees.
     def each: () { (Elem) -> void } -> void
@@ -146,7 +146,7 @@ module PairingHeap
   end
 
   # Priority queue where the smallest priority is the most prioritary
-  class MinPriorityQueue[Elem, Priority < Comparable[Priority]] < PairingHeap[Elem, Priority]
+  class MinPriorityQueue[Elem, Priority < Comparable] < PairingHeap[Elem, Priority]
     def initialize: () -> void
 
     alias decrease_key change_priority
@@ -155,7 +155,7 @@ module PairingHeap
   end
 
   # Priority queue where the highest priority is the most prioritary
-  class MaxPriorityQueue[Elem, Priority < Comparable[Priority]] < PairingHeap[Elem, Priority]
+  class MaxPriorityQueue[Elem, Priority < Comparable] < PairingHeap[Elem, Priority]
     def initialize: () -> void
 
     alias increase_key change_priority
